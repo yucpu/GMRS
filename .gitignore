@@ -1,0 +1,6 @@
+
+# ignore modules
+project/gmrs/node_modules/
+# ignore build
+project/gmrs/build/
+

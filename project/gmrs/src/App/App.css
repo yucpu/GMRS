@@ -1,0 +1,40 @@
+.App{
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.background-circle {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  filter: blur(40px);
+}
+#circleOne{
+  background-color: green;
+  top: 10%;
+  left: 10%;
+  z-index: -2;
+}
+#circleTwo{
+  background-color: rgb(41, 125, 156);
+  top: 60%;
+  left: 40%;
+  z-index: -2;
+}
+#circleThree{
+  background-color: lemonchiffon;
+  top: 30%;
+  left: 75%;
+  z-index: -2;
+}
+
+.background{
+  position: absolute;
+  background-color:rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
