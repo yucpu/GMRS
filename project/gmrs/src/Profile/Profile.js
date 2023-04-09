@@ -1,5 +1,6 @@
 import {React, useMemo} from 'react'
 import { useData } from '../util/data'
+import './Profile.css'
 
 export default function Profile() {
     const context = useData()
