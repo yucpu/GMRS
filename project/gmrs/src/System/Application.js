@@ -38,7 +38,6 @@ export default function Application() {
             </Content>
             <Footer
                 style={{
-                    position:'absolute',
                     textAlign: 'center',
                     width:"100%",
                     bottom:0,
