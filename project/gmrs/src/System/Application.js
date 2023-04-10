@@ -1,4 +1,4 @@
-import { Menu } from 'antd'
+import { Divider, Menu } from 'antd'
 import Layout, { Content, Footer, Header } from 'antd/es/layout/layout'
 import React from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
@@ -35,6 +35,7 @@ export default function Application() {
             </Header>
             <Content >
                 <Outlet></Outlet>
+              
             </Content>
             <Footer
                 style={{

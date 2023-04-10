@@ -1,11 +1,59 @@
 #profile{
     position: absolute;
-    border: 1px solid;
     border-radius: 4px;
-    width: 90%;
-    height: 100%;
+    width: 80%;
+    height: 98%;
     left: 50%;
+    top: 10px;
     transform: translate(-50%);
-
     background-color: rgba(255,255,255,0.5);
+    display: flex;
+    flex-direction: row;
+    box-shadow: 6px 0px 16px -8px rgba(0, 0, 0, 0.08),-6px 0px 16px 0px rgba(0, 0, 0, 0.08);
+}
+
+#avatar{
+    width: 30%;
+    text-align: center;
+}
+
+#avatar > h1:first-of-type{
+    text-align: center;
+    font-size: 45px;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+.ant-divider{
+    height: 100% !important;
+}
+
+#playerInfo{
+    width: 70%;
+    padding: 10px;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+#playerInfo > div:first-of-type{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    width: 85%;
+}
+
+.customized{
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    margin-top: 3vh;
+    padding: 2px 2vh;
+    max-width: 500px;
+    background-color: rgba(229, 229, 234, 0.3);
+    
+}
+.customized:focus-within{
+    border-color: #1677ff;
+    background-color: rgba(255, 255, 255, 0.6);
 }
