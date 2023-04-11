@@ -16,6 +16,9 @@ import Reset from "../UserAuth/Reset";
 import Register from "../UserAuth/Register";
 import Application from "../System/Application";
 import Friends from "../Friends/Friends";
+import Reviews from "../com-reviews/Reviews";
+import Discussions from "../com-discussions/Discussions";
+import Guides from "../com-guides/Guides";
 
 
 export default function App() {
@@ -38,6 +41,9 @@ export default function App() {
                             <Route path="store/" element={ <Store/>} />
                             <Route path="library/"  element={<Library/>}/>
                             <Route path="community/" element={<Community/>}/>
+                            <Route path="Reviews/" element={ <Reviews/>} />
+                            <Route path="Discussions/" element={ <Discussions/>} />
+                            <Route path="Guides/" element={ <Guides/>} />
                             <Route path="friends/" element={<Friends/>} />
                             <Route path="profile/" element={<Profile/>} />
                             <Route path="*" element={<NotFound/>}></Route>
