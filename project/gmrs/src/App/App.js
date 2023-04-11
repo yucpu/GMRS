@@ -15,7 +15,7 @@ import LoginPage from "../UserAuth/Login"
 import Reset from "../UserAuth/Reset";
 import Register from "../UserAuth/Register";
 import Application from "../System/Application";
-import { Friends } from "../Friends/Friends";
+import Friends from "../Friends/Friends";
 
 
 export default function App() {

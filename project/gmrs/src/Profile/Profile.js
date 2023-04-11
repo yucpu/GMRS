@@ -9,7 +9,7 @@ export default function Profile() {
 
     return useMemo(()=>{
         return (
-            <div id='profile'>
+            <div className='profile_friend_layout'>
                 <div id='avatar'>
                     <h1>Profile</h1>
                     <img src={require('../resources/gamer_1.png')} width='50%'/>
