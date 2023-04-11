@@ -30,8 +30,6 @@ export default function Friends() {
     let handleChange=(event, type, value) =>{
         if(type == "tags"){
             let selected = {...prototype, [value]:true}
-            console.log(selected)
-            console.log(value)
             return dispatch({type:type,value:selected})
         }
         dispatch({type:type, value:value? value:event.target.value})
