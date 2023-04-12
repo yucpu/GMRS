@@ -3,9 +3,10 @@ import { createContext, useContext, useReducer, useState } from "react";
 
 export const DataContext = createContext(null);
 const {Provider} = DataContext;
-const serverHost = "https://1d5237f6-d0b3-4519-97ae-190ddc1e207c.mock.pstmn.io/";
+const serverHost = "https://f0e1017f-cc79-416f-a80c-5c1fb7d4e267.mock.pstmn.io/";
 
 // const serverHost = "https://my-json-server.typicode.com/yucpu/jsTPS/"
+
 
 
 let reducer = (state, action) =>{
@@ -25,8 +26,8 @@ let reducer = (state, action) =>{
 const initState ={
     token: localStorage.getItem('token'),
     gameList:[],
-    //user:{nickname:"",username:"",email:"", region:"",age:"",geneder:""}
-    user:null
+    user:localStorage.getItem('user'),
+    friendlist:[],
 }
 
 
@@ -78,15 +79,18 @@ export async function login(data){
  */
 export async function getData(getPath,params){
     let objects = Object.keys(params)
+    console.log(objects)
     let res = '';
     for (let key=0; key < objects.length; key ++){
         if (key != objects.length-1){
-            res += res+= ''+objects[key]+'='+encodeURIComponent(params[objects[key]])+"&";
+            res+= ''+objects[key]+'='+encodeURIComponent(params[objects[key]])+"&";
         }else{
-            res += res+= ''+objects[key]+'='+encodeURIComponent(params[objects[key]]);
+            res+= ''+objects[key]+'='+encodeURIComponent(params[objects[key]]);
         }
     }
+    console.log(res)
     let url = serverHost+ `${getPath}?` + res
+    console.log(url);
     let request = new Request(url, {
         method: 'GET',
         mode: 'cors',
