@@ -3,7 +3,9 @@ import { createContext, useContext, useReducer, useState } from "react";
 
 export const DataContext = createContext(null);
 const {Provider} = DataContext;
-const serverHost = "https://629d6146-5e52-4fe8-8095-cd56f9288ba7.mock.pstmn.io/";
+const serverHost = "https://1d5237f6-d0b3-4519-97ae-190ddc1e207c.mock.pstmn.io/";
+
+// const serverHost = "https://my-json-server.typicode.com/yucpu/jsTPS/"
 
 
 let reducer = (state, action) =>{
@@ -12,6 +14,8 @@ let reducer = (state, action) =>{
             return {...state, user:action.value}
         case "gameList":
             return {...state, gameList:action.value}
+        case "token":
+            return {...state, token:action.value}
         default:
             return {...state}
     }
@@ -19,8 +23,10 @@ let reducer = (state, action) =>{
 
 
 const initState ={
-    user: localStorage.getItem('token'),
-    gameList:[]
+    token: localStorage.getItem('token'),
+    gameList:[],
+    //user:{nickname:"",username:"",email:"", region:"",age:"",geneder:""}
+    user:null
 }
 
 
@@ -39,7 +45,7 @@ export const DataProvider = ({children}) => {
     }
 
     return(
-        <Provider value={{user, userLogin, userLogOut, state, dispatch}}>
+        <Provider value={{user,setUser, userLogin, userLogOut, state, dispatch}}>
             {children}
         </Provider>
     )
@@ -61,6 +67,56 @@ export async function login(data){
     })
     const response = await fetch(request);
     return response.json();
+}
+
+
+/**
+ * async Request data from the server. 
+ * @param {string} getPath the path of getRequest. eg serverHost/pathName?param1=xxx&param2=xxxx......
+ * @param {object} params an object which contains all needed parameters. eg.{param1:value, param2:value,...}
+ * @returns return an Promise Object. get return value by using Promise.then((res)=>{your code})
+ */
+export async function getData(getPath,params){
+    let objects = Object.keys(params)
+    let res = '';
+    for (let key=0; key < objects.length; key ++){
+        if (key != objects.length-1){
+            res += res+= ''+objects[key]+'='+encodeURIComponent(params[objects[key]])+"&";
+        }else{
+            res += res+= ''+objects[key]+'='+encodeURIComponent(params[objects[key]]);
+        }
+    }
+    let url = serverHost+ `${getPath}?` + res
+    let request = new Request(url, {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'default',
+        credentials: 'same-origin',
+        headers : {'Content-Type': 'application/json; charset=utf-8'},
+    })
+    const respone = await fetch(request)
+    return respone.json();
+}
+
+/**
+ * async Post data to the server from user-end
+ * @param {string} postPath the path of postRequest. eg serverHost/pathName
+ * @param {object} params an object which contains all value needed . eg.{param1:value, param2:value,...}
+ * @returns return an Promise object. get status code by using .then((code)=>{your code});
+ */
+export async function postData(postPath,params){
+    let url = serverHost+ `${postPath}`;
+    let request = new Request(url, {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'default',
+        credentials: 'same-origin',
+        headers : {'Content-Type': 'application/json; charset=utf-8'},
+        body:JSON.stringify(params)
+    })
+
+    const respone = await fetch(request)
+    return respone.json();
 }
 
 
