@@ -30,7 +30,8 @@ export default function LoginPage() {
 
     let handleInput = (event,type) =>{
         let value = event.target.value;
-        dispatch({type:type, value:value});        
+        dispatch({type:type, value:value});
+        console.log(data.account);      
     }
 
     let handleSubmit = () =>{
@@ -39,7 +40,7 @@ export default function LoginPage() {
         login(data).then((auth)=>{
             console.log(auth.token)
             if(auth){
-                context.dispatch({type:"user", value:auth.token})
+                context.dispatch({type:"token", value:auth.token})
                 localStorage.setItem("token", auth.token)
             }else{
                 message.error("Please enter correct password")

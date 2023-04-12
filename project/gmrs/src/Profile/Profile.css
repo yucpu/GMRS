@@ -1,4 +1,4 @@
-.profile_firend_layout{
+.profile_friend_layout{
     position: absolute;
     border-radius: 4px;
     width: 80%;
@@ -24,9 +24,9 @@
     letter-spacing: 2px;
 }
 
-.ant-divider{
+/* .ant-divider{
     height: 100% !important;
-}
+} */
 
 #playerInfo{
     width: 70%;
@@ -56,4 +56,13 @@
 .customized:focus-within{
     border-color: #1677ff;
     background-color: rgba(255, 255, 255, 0.6);
+}
+
+.spin-div{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    
 }
