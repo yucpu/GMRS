@@ -16,12 +16,12 @@ export default function RequireAuth({children}) {
     //     }
     // },[context.state.user])
     useEffect(()=>{
-        if(!context.state.user){
+        if(!context.state.token){
             message.error("You need to login first")
         }
-    },[context.state.user])
+    },[context.state.token])
 
-    if (!context.state.user){
+    if (!context.state.token){
     
         return <Navigate to="/auth"/>
     }
