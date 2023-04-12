@@ -31,10 +31,27 @@
 
 #friendList > div:last-child{
     flex-grow: 1;
+    width: 100%;
+    padding-left: 40px;
+    overflow-y: scroll;
     
 }
 
 #friendInfo{
+    
     position: relative;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    
+}
 
+#friendInfo > :first-child{
+    
+}
+
+.ant-list-item-meta-title{
+    margin-top: 0px;
 }
