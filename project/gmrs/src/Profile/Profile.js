@@ -42,9 +42,7 @@ export default function Profile() {
 
     
     return useMemo(()=>{
-        
         return context.state.user ? (
-            
             <div className='profile_friend_layout'>
                 <div id='avatar'>
                     <h1>Profile</h1>

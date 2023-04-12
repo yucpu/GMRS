@@ -28,17 +28,17 @@ export default function Application() {
 
     return (
         <Layout>
-            <Header style={{position:"sticky", top:0}}>
+            <Header style={{position:"sticky", top:0, zIndex:2}}>
                 <NavLink to='profile'><div className='logo'/></NavLink>
                 <Menu theme='dark' mode='horizontal' items={Links}/>
                 
             </Header>
             <Content >
                 <Outlet></Outlet>
-              
             </Content>
             <Footer
                 style={{
+                   
                     textAlign: 'center',
                     width:"100%",
                     bottom:0,
