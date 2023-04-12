@@ -16,6 +16,7 @@ import Reset from "../UserAuth/Reset";
 import Register from "../UserAuth/Register";
 import Application from "../System/Application";
 import Friends from "../Friends/Friends";
+import Test from "../test";
 
 
 export default function App() {
@@ -40,6 +41,7 @@ export default function App() {
                             <Route path="community/" element={<Community/>}/>
                             <Route path="friends/" element={<Friends/>} />
                             <Route path="profile/" element={<Profile/>} />
+                            
                             <Route path="*" element={<NotFound/>}></Route>
                         </Route>
                         <Route path="auth/" element={<UserAuth/>}>
@@ -49,7 +51,7 @@ export default function App() {
                             <Route path="register/" element={<Register/>}/>
                             <Route path="*" element={<LoginPage/>}/>
                         </Route>
-                            
+                        <Route path="test" element= {<Test/>}/>
                         <Route path="/*" element={<NotFound/>}/>
                     </Routes>
                 </div> 
