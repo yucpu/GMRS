@@ -40,8 +40,10 @@ export default function LoginPage() {
         login(data).then((auth)=>{
             console.log(auth.token)
             if(auth){
-                context.dispatch({type:"token", value:auth.token})
-                localStorage.setItem("token", auth.token)
+                context.dispatch({type:"token", value:auth.token}); // get toten
+                context.dispatch({type:"user",value:auth.user}); // get user
+                localStorage.setItem("token", auth.token);
+                localStorage.setItem("user",auth.user);
             }else{
                 message.error("Please enter correct password")
             }
