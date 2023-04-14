@@ -1,8 +1,8 @@
-import React, {useMemo, useReducer}from 'react'
+import React, {useMemo, useReducer, useState}from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from 'antd'
 import { Typography, TextField } from '@mui/material'
-
+import { postData } from '../util/data'
 
 const reducer = (data, action)=>{
     switch(action.type){
@@ -19,20 +19,30 @@ const reducer = (data, action)=>{
 }
 
 export default function Reset() {
-    const [data, dispatch] = useReducer(reducer,{username:"", security:"", newPassword:""})
+    const [data, dispatch] = useReducer(reducer,{username:"", security:"", newPassword:""});
+    const [loading,setLoading] = useState(false);
     let handleInput = (event,type) =>{
         let value = event.target.value;
         dispatch({type:type, value:value});        
     }
 
     let handleSubmit = ()=>{
-        
+        setLoading("disable");
+        postData("reset", data).then((res)=>{
+            console.log(res);
+            setLoading(false);
+        }).catch((err)=>{
+            console.log(err);
+            setLoading(false);
+        }).finally(()=>{
+            setLoading(false);
+        });
     }
 
     return useMemo(
         ()=>{
             return(
-                <div id='reset' className='auth-form'>
+                <div id='reset' className= {'auth-form' + loading}>
                     <Typography variant='h5'>Reset</Typography>
                     <TextField variant='standard' label="Username/Email" placeholder='Input username/Email' focused value={data.username} onChange={(event)=>{handleInput(event,"username")}}/>
                     <TextField variant='standard' label="Security Number" placeholder='Input unique security number' focused value={data.security} onChange={(event)=>handleInput(event,"security")}/>
@@ -43,12 +53,12 @@ export default function Reset() {
                                 Cancel
                             </Button>
                         </Link>
-                        <Button size='small' type='primary'>Submit</Button>
+                        <Button size='small' type='primary' onClick={handleSubmit} loading>Submit</Button>
                     </div>
                 </div>                
             )
         },
-        [data]
+        [data, loading]
     )
 
 }

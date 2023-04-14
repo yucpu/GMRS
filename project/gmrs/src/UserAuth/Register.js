@@ -1,8 +1,8 @@
 import {TextField, Typography } from '@mui/material'
 import {Button} from 'antd';
 import { Tag } from 'antd'
-import React, {useMemo, useReducer} from 'react'
-import {generateToken} from "../util/data"
+import React, {useMemo, useReducer, useState} from 'react'
+import {generateToken, postData} from "../util/data"
 import { Link } from 'react-router-dom';
 
 const reducer = (data, action)=>{
@@ -23,15 +23,29 @@ const reducer = (data, action)=>{
 
 export default function Register() {
     const [data, dispatch] = useReducer(reducer,{username:"", password:"", region:"", email:"", security:generateToken(10)})
+    const [loading, setLoading] = useState(false);
     let handleInput = (event,type) =>{
         let value = event.target.value;
         dispatch({type:type, value:value});        
     }
 
+    let handleSubmit= () =>{
+        setLoading("disable");
+        postData("register", data).then((res)=>{
+            console.log(res);
+            setLoading(false);
+        }).catch((err)=>{
+            console.log(err);
+            setLoading(false);
+        }).finally(()=>{
+            setLoading(false);
+        });
+    }
+
     return useMemo(
         ()=>{
             return(
-                <div id='register' className='auth-form'>
+                <div id='register' className={'auth-form ' + loading}>
                     <Typography variant='h5'>Sign Up</Typography>
                     <TextField variant='standard' label="Username" placeholder='Input username' focused value={data.username} onChange={(event)=>{handleInput(event,"username")}}/>
                     <TextField variant='standard' label="Password" placeholder='Input password' focused value={data.password} type='password' onChange={(event)=>handleInput(event,"password")}/>
@@ -47,12 +61,12 @@ export default function Register() {
                                 Cancel
                             </Button>
                         </Link>
-                        <Button size='small' type='primary'>Submit</Button>
+                        <Button size='small' type='primary' onClick={handleSubmit} loading={loading}>Submit</Button>
                     </div>
                 </div>
             )  
         },
-        [data]
+        [data,loading]
     )
 
 }
