@@ -136,7 +136,7 @@ export default function Store() {
                     <Search id='search' className='search' placeholder="Input names, phblishers and so on" enterButton="Search" size="large" suffix={suffix} onSearch={onSearch}/>
                     <div className='downList'>
 
-                    <Dropdown overlay={
+                    {/* <Dropdown overlay={
                         <Menu>
                         {items1.map((item) => (
                         <Menu.Item key={item.key}>{item.label}</Menu.Item>))}
@@ -182,7 +182,7 @@ export default function Store() {
                         Sorted by
                     <DownOutlined />
                     </Space>
-                    </Dropdown>
+                    </Dropdown> */}
                     </div>
                     
                     <div className='gameList'>

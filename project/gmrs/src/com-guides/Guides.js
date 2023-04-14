@@ -52,6 +52,7 @@ export default function Guides() {
         content: 'rule'
       },
   ];
+  console.log(data[0].title)
   const position = 'bottom';
   const align = 'center';
 
@@ -68,10 +69,10 @@ export default function Guides() {
       <Link className='linktoReview' to="../Reviews">Reviews</Link>
       </Menu.Item>
       <Menu.Item key="3" >
-      <Link className='linktoReview' to="../Reviews">Discussions</Link>
+      <Link className='linktoReview' to="../Discussions">Discussions</Link>
       </Menu.Item>
       <Menu.Item key="4">
-      <Link className='linktoReview' to="../Reviews">Guides</Link>
+      <Link className='linktoReview' to="../Guides">Guides</Link>
       </Menu.Item>
     </Menu>
       </div>

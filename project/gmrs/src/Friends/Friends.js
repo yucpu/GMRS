@@ -2,7 +2,7 @@ import { Divider } from 'antd'
 import React, { useReducer } from 'react'
 import './Friends.css'
 import { IconButton, InputBase, Paper} from '@mui/material'
-import  SearchIcon from '@mui/icons-material/Search';
+import  SearchIcon from '@mui/icons-material/Search'
 import { Space, Tag } from 'antd';
 const {CheckableTag} = Tag
 let prototype = {'All':false,'id':false,'region':false,'game':false}
