@@ -1,5 +1,7 @@
 
 import { createContext, useContext, useReducer, useState } from "react";
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 
 export const DataContext = createContext(null);
 const {Provider} = DataContext;
@@ -7,6 +9,18 @@ const serverHost = "https://f0e1017f-cc79-416f-a80c-5c1fb7d4e267.mock.pstmn.io/"
 
 // const serverHost = "https://my-json-server.typicode.com/yucpu/jsTPS/"
 
+const firebaseConfig = {
+    apiKey: "AIzaSyDC-E59movlz1LkBdPfyIhUqTYJCLlb2kA",
+    authDomain: "gmrs-cd2d3.firebaseapp.com",
+    projectId: "gmrs-cd2d3",
+    storageBucket: "gmrs-cd2d3.appspot.com",
+    messagingSenderId: "151220009462",
+    appId: "1:151220009462:web:4543fd4009f323140eefd7",
+    measurementId: "G-ZK9VVWQ4H2"
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
 
 let reducer = (state, action) =>{
