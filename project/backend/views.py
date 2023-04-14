@@ -4,40 +4,53 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 from .models import User
 from django.views.decorators.csrf import csrf_exempt
+import json
+from django.http import JsonResponse
+from django.http import HttpResponse
 
 
+
+import json
+from django.http import HttpResponse, HttpResponseRedirect
 
 def reset_password(request):
     if request.method == 'POST':
         # retrieve form data
-        username = request.POST['username']
-        email = request.POST['email']
-        password = request.POST['password']
+        print(request.body)
+        result = json.loads(request.body.decode('utf-8'))
+        username = result.get('username')
+        security = result.get('security')
+        password = result.get('password')
 
         # get user by username and email
         user = User.get_user_by_username(username)
-        if user and user.email == email:
+        if user and security:
             # update user's password and save to database
             user.password = password
             user.save()
-            return redirect('login')
+            return HttpResponseRedirect(json.dumps(response_data), content_type='application/json')
         else:
             # display error message if user not found or email does not match
             error_message = "Invalid username or email"
-            return render(request, 'Reset.js', {'error_message': error_message})
+            response_data = {"error_message": error_message}
+            return HttpResponse(json.dumps(response_data), content_type='application/json')
     else:
-        return render(request, 'Reset.js')
+        response_data = {}
+        return HttpResponse(json.dumps(response_data), content_type='application/json')
+
 
 def add_user(request):
     if request.method == 'POST':
         # retrieve form data
-        nickname = request.POST['nickname']
-        username = request.POST['username']
-        email = request.POST['email']
-        region = request.POST['region']
-        age = request.POST['age']
-        gender = request.POST['gender']
-        password = request.POST['password']
+        print(request.body)
+        result = json.loads(request.body.decode('utf-8'))
+        nickname = result.get('nickname')
+        username = result.get('username')
+        email = result.get('email')
+        region = result.get('region')
+        age = result.get('age')
+        gender = result.get('gender')
+        password = result.get('password')
 
         # create new user object and save to database
         user_dict = {
@@ -51,77 +64,70 @@ def add_user(request):
         }
         user = User(user_dict)
         user.save()
-        return redirect('login')
+
+        response_data = {"message": "User created successfully"}
+        return HttpResponse(json.dumps(response_data), content_type='application/json')
     else:
-        return render(request, 'Register.js')
+        response_data = {}
+        return HttpResponse(json.dumps(response_data), content_type='application/json')
 
 
 
 
-@csrf_exempt
+
 def login(request):
-    print("inside login")
-    print(request)
     if request.method == 'POST':
         # retrieve form data
-        username = request.POST['username']
-        password = request.POST['password']
+        print(request.body)
+        result = json.loads(request.body.decode('utf-8'))
+        username = result.get('account')
+        password = result.get('password')
+        print(username)
+        print(password)
 
         # get user by username
         user = User.get_user_by_username(username)
+        print(user.password)
+        print(user.username)
         if user and user.password == password:
-            # set session variable and redirect to home page
+            # set session variable and return response
             request.session['user_id'] = user._id
-            return redirect('home')
+            print("retunting body")
+            response_data = {
+                "token": "SDF7FQ6F",
+                "user": {
+                    "userID": user._id,
+                    "username": user.username,
+                    "nickname": user.nickname,
+                    "email": user.email,
+                    "region": user.region,
+                    "age": user.age,
+                    "gender": user.gender,
+                    "friends": user.friends,
+                    "games": user.gamecollection,
+                }
+            }
+            response = HttpResponse(json.dumps(response_data), content_type='application/json')
+            response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+            response['Access-Control-Allow-Methods'] = 'POST'
+            return response
         else:
             # display error message if user not found or password is incorrect
             error_message = "Invalid username or password"
-            return render(request, 'Login.js', {'error_message': error_message})
+            response_data = {"error_message": error_message}
+            print(error_message)
+            response = HttpResponse(json.dumps(response_data), content_type='application/json')
+            response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+            response['Access-Control-Allow-Methods'] = 'POST'
+            return response
     else:
-        return render(request, 'Login.js')
-# def login(request):
-#     print("inside login")
-#     if request.method == 'POST':
-#         # retrieve query parameters
-#         username = request.GET.get('username')
-#         password = request.GET.get('password')
-#         print("inside get", username, pass)
+        response_data = {}
+        response = HttpResponse(json.dumps(response_data), content_type='application/json')
+        response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+        response['Access-Control-Allow-Methods'] = 'POST'
+        return response
 
-#         # get user by username
-#         user = User.get_user_by_username(username)
-#         print(user)
-#         if user and user.password == password:
-#             # set session variable and redirect to home page
-#             request.session['user_id'] = user._id
-#             return redirect('home')
-#         else:
-#             # display error message if user not found or password is incorrect
-#             error_message = "Invalid username or password"
-#             print(error_message)
-#             return render(request, 'Login.js', {'error_message': error_message})
-#     else:
-#         return render(request, 'Login.js')
 
-def login(request):
-    print("inside login")
-    print(request)
-    if request.method == 'POST':
-        # retrieve form data
-        username = request.POST['username']
-        password = request.POST['password']
-
-        # get user by username
-        user = User.get_user_by_username(username)
-        if user and user.password == password:
-            # set session variable and redirect to home page
-            request.session['user_id'] = user._id
-            return redirect('home')
-        else:
-            # display error message if user not found or password is incorrect
-            error_message = "Invalid username or password"
-            return render(request, 'Login.js', {'error_message': error_message})
-    else:
-        return render(request, 'Login.js')
     
 
 def update_profile(request):
@@ -147,12 +153,45 @@ def update_profile(request):
         }
         user.update_profile(profile_dict)
 
-        return redirect('profile')
+        response_data = {
+            "message": "Profile updated successfully",
+            "user": {
+                "userID": user._id,
+                "username": user.username,
+                "nickname": user.nickname,
+                "email": user.email,
+                "region": user.region,
+                "age": user.age,
+                "gender": user.gender,
+                "friends": user.friends,
+                "games": user.gamecollection,
+            }
+        }
+        response = HttpResponse(json.dumps(response_data), content_type='application/json')
+        response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+        response['Access-Control-Allow-Methods'] = 'POST'
+        return response
     else:
         # render profile update form
         user_id = request.session.get('user_id')
         user = User.get_user_by_id(user_id)
-        return render(request, 'Profile.js', {'user': user})
+        response_data = {
+            "user": {
+                "userID": user._id,
+                "username": user.username,
+                "nickname": user.nickname,
+                "email": user.email,
+                "region": user.region,
+                "age": user.age,
+                "gender": user.gender,
+                "friends": user.friends,
+                "games": user.gamecollection,
+            }
+        }
+        response = HttpResponse(json.dumps(response_data), content_type='application/json')
+        response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+        response['Access-Control-Allow-Methods'] = 'GET'
+        return response
 
     
 def add_friend(request, username):
@@ -160,30 +199,137 @@ def add_friend(request, username):
     user_id = request.session.get('user_id')
     user = User.get_user_by_username(user_id)
     friend_username = username
-# add friend to user's friends list and save to database
-    if(friend_username not in  user.friends):
+    # add friend to user's friends list and save to database
+    if friend_username not in user.friends:
         user.friends.append(friend_username)
         user.save()
 
         # get friend user object
         friend = User.get_user_by_username(username)
         if not friend:
-            error_message = "User not found"
-            return render(request, 'add_friend.html', {'error_message': error_message})
+            response_data = {"error_message": "User not found"}
+            return HttpResponse(json.dumps(response_data), content_type='application/json')
 
-        # add friend to user's friends list and save to database
-        user.friends.append(friend)
-        user.save()
+        # add user to friend's friends list and save to database
+        friend.friends.append(user.username)
+        friend.save()
 
-        return redirect('home')
+        response_data = {"message": "Friend added successfully"}
+        response = HttpResponse(json.dumps(response_data), content_type='application/json')
+        response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+        response['Access-Control-Allow-Methods'] = 'POST'
+        return response
     
 def get_friends(request):
-    # get current user object
-    user_id = request.session.get('user_id')
-    user = User.get_user_by_username(user_id)
+    if request.method == 'GET':
+        # get current user object
+        user_id = request.session.get('user_id')
+        user = User.get_user_by_username(user_id)
 
-    # get list of friends for user
-    friends = user.friends
+        # get list of friends for user
+        friends = user.friends
 
-    return render(request, 'Friends.js', {'friends': friends})
+        response_data = {
+            "friends": friends,
+        }
+        response = HttpResponse(json.dumps(response_data), content_type='application/json')
+        response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+        response['Access-Control-Allow-Methods'] = 'GET'
+        return response
 
+
+def add_game(request):
+    if request.method == "POST":
+        game = request.POST.get('game')
+        username = request.session.get('username')
+        if username:
+            user = User.get_user_by_username(username)
+            if game not in user.gamecollection:
+                user.gamecollection.append(game)
+                user.save()
+                response_data = {
+                    "message": "Game added successfully",
+                }
+                status_code = 200
+            else:
+                response_data = {
+                    "error_message": "Game already exists in your collection",
+                }
+                status_code = 400
+        else:
+            response_data = {
+                "error_message": "You need to login first",
+            }
+            status_code = 401
+        response = HttpResponse(json.dumps(response_data), content_type='application/json', status=status_code)
+        response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+        response['Access-Control-Allow-Methods'] = 'POST'
+        return response
+    else:
+        response_data = {}
+        response = HttpResponse(json.dumps(response_data), content_type='application/json')
+        response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+        response['Access-Control-Allow-Methods'] = 'GET'
+        return response
+    
+
+def search_friends(request):
+    if request.method == 'POST':
+        # retrieve form data
+        result = json.loads(request.body.decode('utf-8'))
+        region = result.get('region')
+        game = result.get('game')
+        username = result.get('username')
+
+        # Get the user object of the logged in user
+        current_user = User.get_user_by_username(result.get('username'))
+
+        # Get all users that match the search criteria
+        users = []
+        if region:
+            users += User.objects.filter(region=region)
+        if game:
+            users += User.objects.filter(gamecollection__contains=game)
+        if username:
+            users += User.objects.filter(username__contains=username)
+
+        # Filter users based on common friends with the logged in user
+        friends = current_user.friends
+        if friends:
+            filtered_users = []
+            for user in users:
+                if user.username != current_user.username:
+                    if any(friend in user.friends for friend in friends):
+                        filtered_users.append(user)
+            users = filtered_users
+
+        # Create response data
+        response_data = {
+            "users": [
+                {
+                    "userID": user._id,
+                    "username": user.username,
+                    "nickname": user.nickname,
+                    "email": user.email,
+                    "region": user.region,
+                    "age": user.age,
+                    "gender": user.gender,
+                    "friends": user.friends,
+                    "games": user.gamecollection,
+                }
+                for user in users
+            ]
+        }
+
+        # Return response
+        response = HttpResponse(json.dumps(response_data), content_type='application/json')
+        response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+        response['Access-Control-Allow-Methods'] = 'POST'
+        return response
+
+    else:
+        response_data = {}
+        response = HttpResponse(json.dumps(response_data), content_type='application/json')
+        response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+        response['Access-Control-Allow-Methods'] = 'POST'
+        return response

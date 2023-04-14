@@ -23,6 +23,7 @@ class User:
         self.gender = user_dict['gender']
         self.password = user_dict['password']
         self.friends = user_dict.get('friends', [])
+        self.gamecollection= user_dict.get('favourite',[])
     
 
 
@@ -62,6 +63,12 @@ class User:
             # insert new user document
             self.save()
 
+    def add_game_to_collection(self, game_name):
+        if game_name not in self.gamecollection:
+            self.gamecollection.append(game_name)
+            self.save()
+
+
 
 
     @staticmethod
@@ -80,6 +87,30 @@ class User:
         else:
             return None
         
+    @staticmethod
+    def search_friends(region=None, game=None):
+        query = {}
+
+        if region:
+            query['region'] = region
+
+        if game:
+            query['gamecollection'] = game
+
+        users = collection.find(query)
+
+        friends = []
+        for user_dict in users:
+            user = User(user_dict)
+            common_friends = set(user.friends).intersection(set(current_user.friends))
+            if common_friends:
+                friends.append({
+                    'user': user,
+                    'common_friends': common_friends
+                })
+
+        return friends
+        
 
 # username = "sparky12"
 # user = User.get_user_by_username(username)
@@ -97,18 +128,18 @@ class User:
 # })
 # new_user.save()
 
-# username = "sparky12"
-# password = "newpasswordmegh"
+username = "sparky12"
+password = "newpasswordmegh"
 
-# # get user by username
-# user = User.get_user_by_username(username)
-# if user and user.password == password:
-#     # set session variable and redirect to home page
-#     print("loggedin")
-# else:
-#     # display error message if user not found or password is incorrect
-#     error_message = "Invalid username or password"
-#     print(error_message)
+# get user by username
+user = User.get_user_by_username(username)
+if user and user.password == password:
+    # set session variable and redirect to home page
+    print("loggedin")
+else:
+    # display error message if user not found or password is incorrect
+    error_message = "Invalid username or password"
+    print(error_message)
 
 # #create a new user
 # username = "johndoe"
@@ -142,6 +173,31 @@ class User:
 # db = client["sw"]
 # collection = db["profile"]
 
-# collection.update_many({}, {'$set': {"favourite": ["Pandemic"]}})
+# collection.update_many({}, {'$set': {"gamecollection": ["Pandemic"]}})
+
+# current_user = User.get_user_by_username("sparky12")
+
+# # Get all users that match the search criteria
+# query = { "region": "London" }
+# users = collection.find(query)
+
+# # Filter users based on common friends with the logged in user
+# friends = current_user.friends
+# if friends:
+#     filtered_users = []
+#     for user in users:
+#         if user["username"] != "sparky12":
+#             if any(friend in user["friends"] for friend in friends):
+#                 filtered_users.append(user)
+#     users = filtered_users
+
+# # Extract usernames from the user documents
+# usernames = []
+# for user in users:
+#     usernames.append(user["username"])
+
+# print(usernames)
+
+
 
 
