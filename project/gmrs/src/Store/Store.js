@@ -188,14 +188,16 @@ export default function Store() {
                     <div className='gameList'>
                     <>
       
-                    <List pagination={{ position, align, pageSize: 4 }}
+                    <List pagination={{ position, align, pageSize: 5 }}
                     dataSource={data} renderItem={(item) => (
-                        <List.Item>
+                        <List.Item
+                          actions={[<Button>Add</Button>]}
+                        >
                         <List.Item.Meta
-                        avatar={<Avatar src={item.avatar} />}
-                        title={<a href="https://ant.design">{item.title}</a>}
+                        avatar={<Avatar src={item.avatar} shape='square' style={{width:"100px", height:"60px"}}/>}
+                        title={<a>{item.title}</a>}
                         description="Ant Design, a design language for background applications, is refined by Ant UED Team"/>
-                        <Button style={{position:'relative', right:10, top:5}}>Add to library</Button>
+                        
                         </List.Item>
                     )}/>
                     </>
@@ -206,18 +208,18 @@ export default function Store() {
                     <div className='line1'>Games Suggested</div>
                     <div className='line2'>Based on your rating, friends and so on</div>
                     <List
-        itemLayout="horizontal"
-        dataSource={suggested}
-        renderItem={(item) => (
-          <List.Item>
-            <List.Item.Meta
-              avatar={<Avatar src={item.avatar} />}
-              title={<a href="#" style={{ marginRight: '90px' }}>{item.title}</a>}
-              description={<div style={{ marginRight: '90px' }}>This is the description</div>}
-            />
-          </List.Item>
-        )}
-      />
+                        itemLayout="horizontal"
+                        dataSource={suggested}
+                        renderItem={(item) => (
+                          <List.Item>
+                            <List.Item.Meta
+                              avatar={<Avatar src={item.avatar} shape='square' style={{width:"100px", height:"50px"}}/>}
+                              title={<a style={{ marginRight: '90px' }}>{item.title}</a>}
+                              description={<div style={{ marginRight: '90px' }}>This is the description</div>}
+                            />
+                          </List.Item>
+                        )}
+                      />
                 </div>
             </div>
         )

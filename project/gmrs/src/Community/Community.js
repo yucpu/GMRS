@@ -1,9 +1,9 @@
-import {React, useMemo, useEffect, useState} from 'react'
+import {React, useMemo,} from 'react'
 import { useData } from '../util/data'
-import { AudioOutlined, DownOutlined, ExportOutlined } from '@ant-design/icons';
-import { Input, Space, Menu, Dropdown, Avatar, List, Radio, Button } from 'antd';
+import { AudioOutlined, ExportOutlined } from '@ant-design/icons';
+import { Input,Avatar, List,Button } from 'antd';
 import './Community.css';
-import { Routes, Route, Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 
 export default function Community() {const context = useData()
@@ -84,12 +84,14 @@ export default function Community() {const context = useData()
       
                     <List pagination={{ position, align, pageSize: 5 }}
                     dataSource={data} renderItem={(item) => (
-                        <List.Item>
+                        <List.Item
+                          actions={[<Link className='linktoCom' to="../Reviews"><Button style={{position:'relative', right:10, top:5}}>Enter  <ExportOutlined /></Button></Link>]}
+                        >
                         <List.Item.Meta
-                        avatar={<Avatar src={item.avatar} />}
-                        title={<a href="https://ant.design">{item.title}</a>}
+                        avatar={<Avatar src={item.avatar} shape='square' style={{width:"100px", height:"60px"}} />}
+                        title={<a>{item.title}</a>}
                         description={item.description}/>
-                        <Link className='linktoCom' to="../Reviews"><Button style={{position:'relative', right:10, top:5}}>Enter  <ExportOutlined /></Button></Link>
+                        
                         </List.Item>
                         
                     )}/>
@@ -101,18 +103,18 @@ export default function Community() {const context = useData()
                     <div className='line21'>Recommended Communities</div>
                     <div className='line22'>Based on your rating, friends and so on</div>
                     <List
-        itemLayout="horizontal"
-        dataSource={suggested}
-        renderItem={(item) => (
-          <List.Item>
-            <List.Item.Meta
-              avatar={<Avatar src={item.avatar} />}
-              title={<a href="#" style={{ marginRight: '90px' }}>{item.title}</a>}
-              description={<div style={{ marginRight: '90px' }}>This is the description</div>}
-            />
-          </List.Item>
-        )}
-      />
+                      itemLayout="horizontal"
+                      dataSource={suggested}
+                      renderItem={(item) => (
+                        <List.Item>
+                          <List.Item.Meta
+                            avatar={<Avatar src={item.avatar} shape="square" style={{width:"100px", height:"50px"}} />}
+                            title={<a style={{ marginRight: '90px' }}>{item.title}</a>}
+                            description={<div style={{ marginRight: '90px' }}>This is the description</div>}
+                          />
+                        </List.Item>
+                      )}
+                    />
                 </div>
             </div>
         )
