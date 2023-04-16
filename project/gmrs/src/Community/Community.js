@@ -75,14 +75,11 @@ export default function Community() {const context = useData()
     return useMemo(()=>{
         return (
             <div id='Community'>
-                <div className='search-part2'>
-                    <Search id='search' className='search' placeholder="Search for a community" enterButton="Search" size="large" suffix={suffix} onSearch={onSearch}/>
+                <div className='search-part'>
+                    <Search id='search' className='search' placeholder="Search for a community" enterButton="Search" size="large" onSearch={onSearch}/>
                 
-                    
-                    <div className='gameList3'>
-                    <>
-      
-                    <List pagination={{ position, align, pageSize: 5 }}
+                    <div className='gameList'>
+                    <List pagination={{ position, align, pageSize: 10 }}
                     dataSource={data} renderItem={(item) => (
                         <List.Item
                           actions={[<Link className='linktoCom' to="../Reviews"><Button style={{position:'relative', right:10, top:5}}>Enter  <ExportOutlined /></Button></Link>]}
@@ -91,15 +88,11 @@ export default function Community() {const context = useData()
                         avatar={<Avatar src={item.avatar} shape='square' style={{width:"100px", height:"60px"}} />}
                         title={<a>{item.title}</a>}
                         description={item.description}/>
-                        
-                        </List.Item>
-                        
+                        </List.Item> 
                     )}/>
-                    </>
                     </div>
-
                 </div>
-                <div className='Suggested2'>
+                <div className='Suggested'>
                     <div className='line21'>Recommended Communities</div>
                     <div className='line22'>Based on your rating, friends and so on</div>
                     <List
@@ -110,7 +103,7 @@ export default function Community() {const context = useData()
                           <List.Item.Meta
                             avatar={<Avatar src={item.avatar} shape="square" style={{width:"100px", height:"50px"}} />}
                             title={<a style={{ marginRight: '90px' }}>{item.title}</a>}
-                            description={<div style={{ marginRight: '90px' }}>This is the description</div>}
+                            description={"This is the description"}
                           />
                         </List.Item>
                       )}

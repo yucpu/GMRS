@@ -1,6 +1,9 @@
 
 #Community{
     display: flex;
+    padding-top: 30px;
+    width: 100%;
+    height: 100%;
 }
 
 .search-part2 {
@@ -28,12 +31,7 @@
     margin-left: 15px;
 }
 
-/* .ant-avatar {
-    margin-top: 20px;
-    width: 100px;
-    height: 50px;
-    border-radius: 10px;
-} */
+
 
 .Suggested2{
     text-align: center;

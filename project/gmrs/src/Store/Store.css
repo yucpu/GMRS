@@ -1,13 +1,19 @@
 
 #store{
     display: flex;
+    height: 100%;
+    width: 100%;
+    padding-top: 30px;
 }
 
 .search-part {
-    margin-left: 100px;
-    width: 700px;
-    margin-top: 30px;
+    margin-left: 10%;
+    width: 60%; 
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
 }
+
 
 .downList{
     margin-top: 20px;
@@ -26,19 +32,27 @@
 .gameList{
     margin-top: 15px;
     margin-left: 15px;
+    overflow-y: scroll;
 }
 
-/* .ant-avatar {
-    margin-top: 20px;
-    width: 100px;
-    height: 50px;
-    border-radius: 10px;
-} */
+.gameList::-webkit-scrollbar{
+    width: 8px;
+    border-radius: 40px;
+    background-color: white;
+
+}
+.gameList::-webkit-scrollbar-thumb{
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 40px;
+}
 
 .Suggested{
-    text-align: center;
-    width: 500px;
-    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+    margin-left: 30px;
+    align-items: stretch;
 }
 .line1{
     margin-top: 30px;
@@ -50,13 +64,6 @@
     font-size: 10px;
     font-weight: 300;
 }
-.Suggested .ant-avatar{
-    margin-left: 130px;
+.ant-pagination{
+    padding-bottom: 2px;
 }
-.Suggested .ant-title{
-    margin-left: 10px;
-    margin-right: 0px;
-}
-/* .search{
-    width: 300px;
-} */
