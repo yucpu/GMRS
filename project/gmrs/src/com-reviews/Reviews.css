@@ -1,0 +1,88 @@
+#Reviews{
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 1200px;
+    height: 600px;
+    margin-top: 50px;
+    margin-left: 100px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 23px rgba(0, 0, 0, 0.25);
+}
+.navigate-bar{
+    background: rgba(217, 217, 217, 0.4);
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    width: 1200px;
+  
+    
+}
+#Reviews nav{
+    margin-top: 30px;
+}
+.twoBoxes{
+    display: flex;
+}
+.leftOne{
+    width: 550px;
+    height: 300px;
+    margin-left: 30px;
+    margin-top: 30px;
+    background: rgba(217, 217, 217, 0.4);
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+}
+
+.rightOne{
+    width: 550px;
+    height: 300px;
+    margin-left: 30px;
+    margin-top: 30px;
+    background: rgba(217, 217, 217, 0.4);
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+}
+.rate{
+    font-size: 17px;
+}
+#Reviews .box_bottom{
+    height: 50px;
+    width: 550px;
+    display: flex;
+    position: absolute;
+    bottom: 210px;
+    
+}
+.box_bottom img{
+    height: 50px;
+    width: 200px;
+    border-radius: 5px;
+}
+
+.box_bottom .gameName{
+    margin-top: 15px;
+    font-size: 15px;
+    margin-left: 10px;
+    color: gray;
+    font-weight: 600;
+}
+
+.box_bottom .comment{
+    margin-top: 20px;
+    margin-left: 140px;
+    font-size: large;
+}
+.RateGame{
+    margin-top: 30px;
+    margin-left: 30px;
+}
+.reviews_input{
+    width: 1130px;
+    margin-left: 30px;
+    margin-top: 20px;
+
+}
+.reviews_button{
+    margin-left: 1060px;
+    background-color: #99AF6E;
+    width: 100px;
+    height: 40px;
+}

@@ -2,7 +2,7 @@ import { Button, Divider } from 'antd'
 import React, { useEffect, useMemo, useReducer } from 'react'
 import './Friends.css'
 import { IconButton, InputBase, Paper} from '@mui/material'
-import  SearchIcon from '@mui/icons-material/Search';
+import  SearchIcon from '@mui/icons-material/Search'
 import { Space, Tag, List, Avatar} from 'antd';
 import { getData, useData } from '../util/data';
 const {CheckableTag} = Tag
