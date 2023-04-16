@@ -1,5 +1,5 @@
 import { Button, Divider } from 'antd'
-import React, { useEffect, useMemo, useReducer } from 'react'
+import React, { useEffect, useMemo, useReducer, useState } from 'react'
 import './Friends.css'
 import { IconButton, InputBase, Paper} from '@mui/material'
 import  SearchIcon from '@mui/icons-material/Search'
@@ -29,9 +29,11 @@ const reducer = (data, action)=>{
 export default function Friends() {
     let context = useData();
     const [data, dispatch] = useReducer(reducer, {query:"", filter:"friends", friendList:[],tags:tags, selected:null})
+    const [loading,setLoading] = useState(false);
     
     useEffect(()=>{
         getData("friends",{id:124,filter:data.filter,query:data.query}).then((res)=>dispatch({type:"friendList",value:res.friendList}))
+        
     },[])
 
 
@@ -45,12 +47,13 @@ export default function Friends() {
     }
 
     let handleSearch = () =>{
-        getData("friends",{id:124,filter:data.filter,query:data.query}).then((res)=>dispatch({type:"friendList",value:res.friendList}))
+        setLoading(true);
+        getData("friends",{id:124,filter:data.filter,query:data.query})
+        .then((res)=>dispatch({type:"friendList",value:res.friendList}))
+        .finally(()=>setLoading(false));
+        
     }
 
-    
-
- 
     return useMemo(()=>{
         return (
             <div className='profile_friend_layout'>
@@ -92,6 +95,7 @@ export default function Friends() {
                     <Divider></Divider>
                     <div>
                         <List
+                            loading={loading}
                             itemLayout="horizontal"
                             dataSource={data.friendList}
                             renderItem={(item, index) => (
@@ -133,7 +137,7 @@ export default function Friends() {
             </div>
         )
         },
-        [data]
+        [data,loading]
     )
 
 }
