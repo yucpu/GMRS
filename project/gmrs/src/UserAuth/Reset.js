@@ -42,7 +42,7 @@ export default function Reset() {
     return useMemo(
         ()=>{
             return(
-                <div id='reset' className= {'auth-form' + loading}>
+                <div id='reset' className= {'auth-form ' + loading}>
                     <Typography variant='h5'>Reset</Typography>
                     <TextField variant='standard' label="Username/Email" placeholder='Input username/Email' focused value={data.username} onChange={(event)=>{handleInput(event,"username")}}/>
                     <TextField variant='standard' label="Security Number" placeholder='Input unique security number' focused value={data.security} onChange={(event)=>handleInput(event,"security")}/>
@@ -53,7 +53,7 @@ export default function Reset() {
                                 Cancel
                             </Button>
                         </Link>
-                        <Button size='small' type='primary' onClick={handleSubmit} loading>Submit</Button>
+                        <Button size='small' type='primary' onClick={handleSubmit} loading={loading}>Submit</Button>
                     </div>
                 </div>                
             )

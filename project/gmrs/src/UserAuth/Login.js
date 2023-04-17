@@ -43,7 +43,8 @@ export default function LoginPage() {
                 context.dispatch({type:"token", value:auth.token}); // get toten
                 context.dispatch({type:"user",value:auth.user}); // get user
                 localStorage.setItem("token", auth.token);
-                localStorage.setItem("user",auth.user);
+            
+                localStorage.setItem("user",JSON.stringify(auth.user));
             }else{
                 message.error("Please enter correct password")
             }

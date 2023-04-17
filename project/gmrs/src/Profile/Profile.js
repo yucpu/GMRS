@@ -30,14 +30,12 @@ export default function Profile() {
     let [btnLoading,setBtnLoading] = useState(false);
     let basicInfo = context.state.user;
 
-    useEffect(()=>{
-        getData('user',{'id':124}).then((res) =>context.dispatch({type:"user",value:res.user}));
-    },[])
 
     let handleClick=()=>{
         setBtn(true);
         setBtnLoading(true);
         postData("updateInfo",basicInfo).then(()=>setBtnLoading(false)).finally(()=>setBtnLoading(false));
+        
     }
 
     
@@ -73,5 +71,5 @@ export default function Profile() {
                 <Spin tip="Loading...." size='large'/>
             </div>
         )
-    },[context.state.user,btnState])
+    },[context.state.user, btnState,btnLoading])
 }
