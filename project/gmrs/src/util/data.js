@@ -5,9 +5,10 @@ import { getAnalytics } from "firebase/analytics";
 
 export const DataContext = createContext(null);
 const {Provider} = DataContext;
-const serverHost = "https://f0e1017f-cc79-416f-a80c-5c1fb7d4e267.mock.pstmn.io/";
+// const serverHost = "https://f0e1017f-cc79-416f-a80c-5c1fb7d4e267.mock.pstmn.io/";
 
 // const serverHost = "https://my-json-server.typicode.com/yucpu/jsTPS/"
+const serverHost = "http://localhost:8000/ç"
 
 // const firebaseConfig = {
 //     apiKey: "AIzaSyDC-E59movlz1LkBdPfyIhUqTYJCLlb2kA",
@@ -115,6 +116,30 @@ export async function getData(getPath,params){
     return respone.json();
 }
 
+export async function getData1(getPath){
+    // let objects = Object.keys(params)
+    // console.log(objects)
+    let res = '';
+    // for (let key=0; key < objects.length; key ++){
+    //     if (key != objects.length-1){
+    //         res+= ''+objects[key]+'='+encodeURIComponent(params[objects[key]])+"&";
+    //     }else{
+    //         res+= ''+objects[key]+'='+encodeURIComponent(params[objects[key]]);
+    //     }
+    // }
+    console.log(res)
+    let url = serverHost+ `${getPath}` + res
+    console.log(url);
+    let request = new Request(url, {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'default',
+        credentials: 'same-origin',
+        headers : {'Content-Type': 'application/json; charset=utf-8'},
+    })
+    const respone = await fetch(request)
+    return respone.json();
+}
 /**
  * async Post data to the server from user-end
  * @param {string} postPath the path of postRequest. eg serverHost/pathName
