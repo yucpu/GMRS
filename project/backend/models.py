@@ -1,4 +1,5 @@
 # models.py
+from bson import json_util
 from django.db import models
 from pymongo import MongoClient
 from bson.objectid import ObjectId
@@ -7,7 +8,12 @@ import json
 # connect to MongoDB database
 client = MongoClient("mongodb://localhost:27017/")
 db = client["sw"]
-collection = db["profile"]
+collection = db["profile_data"]
+game_collection = db['game']
+review_collection = db['review']
+discussion_collection = db['discussion']
+guide_collection = db['guide']
+
 
 class User:
     def __init__(self, user_dict):
@@ -24,6 +30,7 @@ class User:
         self.password = user_dict['password']
         self.friends = user_dict.get('friends', [])
         self.gamecollection= user_dict.get('favourite',[])
+
     
 
 
@@ -51,13 +58,13 @@ class User:
         if user_id is not None and collection.find_one({'_id': ObjectId(user_id)}):
             # update existing user document
             collection.update_one({'_id': ObjectId(user_id)}, {'$set': {
-    'nickname': self.nickname,
-    'email': self.email,
-    'region': self.region,
-    'age': self.age,
-    'gender': self.gender,
-    'password': self.password
-}})
+                'nickname': self.nickname,
+                'email': self.email,
+                'region': self.region,
+                'age': self.age,
+                'gender': self.gender,
+                'password': self.password
+            }})
 
         else:
             # insert new user document
@@ -102,7 +109,7 @@ class User:
         friends = []
         for user_dict in users:
             user = User(user_dict)
-            common_friends = set(user.friends).intersection(set(current_user.friends))
+            common_friends = set(user.friends).intersection(set(user.friends))
             if common_friends:
                 friends.append({
                     'user': user,
@@ -111,6 +118,110 @@ class User:
 
         return friends
         
+
+class Game:
+    def __init_subclass__(self, game_dict):
+        self.game_id = game_dict['game_id']
+        self.game_name = game_dict['game_name']
+        self.publisher = game_dict['publisher']
+        self.release_date = game_dict['release_date']
+        self.genre = game_dict['genre']
+        self.rating = game_dict['rating']
+        self.numOfPpl = game_dict['com_ppl_num']
+
+    @staticmethod
+    def get_game(game_name):
+        game_dict = game_collection.find_one({"game_name": game_name})
+        print("129:", game_dict['publisher'])
+        if game_dict != None:
+            return game_dict
+
+    @staticmethod
+    def get_all_game():
+        game_data = {}
+        for x in game_collection.find({}, {"_id": 0,"game_name": 1, "numOfPpl" : 1}):
+            num = x['numOfPpl']
+            game_data[x['game_name']] = num
+
+        print("141:", game_data)
+
+        return game_data
+
+#
+class Community:
+    def __init__(self, community_dict):
+        self.game_info = community_dict['game']
+        self.review = Review
+        self.discussion = Discussion
+        self.guides = Guide
+
+
+class Review:
+    def __init__(self, review_dict):
+        self.game_name = review_dict['game_name']
+        self.username = review_dict['username']
+        self.title = review_dict['review_title']
+        self.content = review_dict['review_content']
+        self.rating = review_dict['rating']
+
+    def save(self):
+        review_data = self.__dict__.copy()
+        review_id = review_data.pop('_id', None)
+        if review_id is not None and review_collection.find_one({'_id': ObjectId(review_id)}):
+            # update existing user document
+            collection.update_one({'_id': ObjectId(review_id)}, {'$set': review_data})
+        else:
+            # insert new user document
+            collection.insert_one(review_data)
+    @staticmethod
+    def get_reviews(game_name):
+        reviews = review_collection.find({"game_name": game_name})
+        review_dict = {}
+
+        for item in reviews:
+            item["_id"] = str(item["_id"])
+            review_dict[item["game_name"]] = item
+
+        return review_dict
+
+
+class Discussion:
+    def __init__(self, discussion_dict):
+        self.game_name = discussion_dict['game_name']
+        self.username = discussion_dict['username']
+        self.title = discussion_dict['discussion_title']
+        self.content = discussion_dict['discussion_content']
+
+    @staticmethod
+    def get_discussion(game_name):
+        discussion = discussion_collection.find({"game_name": game_name})
+        discussion_dict = {}
+
+        for item in discussion:
+            item["_id"] = str(item["_id"])
+            discussion_dict[item["game_name"]] = item
+
+        return discussion_dict
+
+class Guide:
+    def __init__(self, guide_dict):
+        self.game_name = guide_dict['game_name']
+        self.update_date = guide_dict['update_date']
+        self.updaet_method = guide_dict['update_method']
+        self.updaet_content = guide_dict['update_content']
+
+    @staticmethod
+    def get_guide(game_name):
+        guide = guide_collection.find({"game_name": game_name})
+        guide_dict = {}
+
+        for item in guide:
+            item["_id"] = str(item["_id"])
+            guide_dict[item["game_name"]] = item
+
+        return guide_dict
+
+
 
 # username = "sparky12"
 # user = User.get_user_by_username(username)
@@ -128,18 +239,18 @@ class User:
 # })
 # new_user.save()
 
-username = "sparky12"
-password = "newpasswordmegh"
-
-# get user by username
-user = User.get_user_by_username(username)
-if user and user.password == password:
-    # set session variable and redirect to home page
-    print("loggedin")
-else:
-    # display error message if user not found or password is incorrect
-    error_message = "Invalid username or password"
-    print(error_message)
+# username = "sparky12"
+# password = "newpasswordmegh"
+#
+# # get user by username
+# user = User.get_user_by_username(username)
+# if user and user.password == password:
+#     # set session variable and redirect to home page
+#     print("loggedin")
+# else:
+#     # display error message if user not found or password is incorrect
+#     error_message = "Invalid username or password"
+#     print(error_message)
 
 # #create a new user
 # username = "johndoe"

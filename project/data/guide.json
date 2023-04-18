@@ -1,0 +1,177 @@
+[{
+  "_id": {
+    "$oid": "643c78bb0b980af8c29d3ca5"
+  },
+  "game_name": "Settlers of Catan",
+  "update_date": "2022-10-15",
+  "update_method": "Rulebook",
+  "update_content": "In Settlers of Catan"
+},{
+  "_id": {
+    "$oid": "643c78bb0b980af8c29d3ca6"
+  },
+  "game_name": "Pandemic",
+  "update_date": "2022-11-02",
+  "update_method": "Online forum",
+  "update_content": "A good strategy in Pandemic is to focus on preventing outbreaks in cities that are at risk of becoming outbreak hotspots. Also"
+},{
+  "_id": {
+    "$oid": "643c78bb0b980af8c29d3ca7"
+  },
+  "game_name": "Warhammer 40",
+  "update_date": "2022-12-01",
+  "update_method": "Game store",
+  "update_content": "If you're just starting out with Warhammer 40"
+},{
+  "_id": {
+    "$oid": "643c78bb0b980af8c29d3ca8"
+  },
+  "game_name": "Magic: The Gathering",
+  "update_date": "2022-09-20",
+  "update_method": "YouTube tutorial",
+  "update_content": "When building a Magic: The Gathering deck"
+},{
+  "_id": {
+    "$oid": "643c78bb0b980af8c29d3ca9"
+  },
+  "game_name": "Dungeons & Dragons",
+  "update_date": "2022-10-29",
+  "update_method": "Player's Handbook",
+  "update_content": "As a Dungeon Master"
+},{
+  "_id": {
+    "$oid": "643c78bb0b980af8c29d3caa"
+  },
+  "game_name": "Ticket to Ride",
+  "update_date": "2022-11-18",
+  "update_method": "Online guide",
+  "update_content": "In Ticket to Ride"
+},{
+  "_id": {
+    "$oid": "643c78bb0b980af8c29d3cab"
+  },
+  "game_name": "Codenames",
+  "update_date": "2022-12-05",
+  "update_method": "Strategy book",
+  "update_content": "To win at Codenames"
+},{
+  "_id": {
+    "$oid": "643c78bb0b980af8c29d3cac"
+  },
+  "game_name": "Memoir '44",
+  "update_date": "2022-09-25",
+  "update_method": "Rulebook",
+  "update_content": "In Memoir '44"
+},{
+  "_id": {
+    "$oid": "643c78bb0b980af8c29d3cad"
+  },
+  "game_name": "Netrunner",
+  "update_date": "2022-10-09",
+  "update_method": "Online forum",
+  "update_content": "A good strategy in Netrunner is to use your icebreakers efficiently and save them for when you really need them. Also"
+},{
+  "_id": {
+    "$oid": "643c78bb0b980af8c29d3cae"
+  },
+  "game_name": "Pathfinder Paizo Publishing",
+  "update_date": "2022-11-11",
+  "update_method": "Game store",
+  "update_content": "When creating a character in Pathfinder"
+},{
+  "_id": {
+    "$oid": "643c78bb0b980af8c29d3caf"
+  },
+  "game_name": "Carcassonne",
+  "update_date": "2022-12-02",
+  "update_method": "YouTube tutorial",
+  "update_content": "When playing Carcassonne"
+},{
+  "_id": {
+    "$oid": "643c78bb0b980af8c29d3cb0"
+  },
+  "game_name": "Agricola",
+  "update_date": "2022-09-22",
+  "update_method": "Rulebook",
+  "update_content": "In Agricola"
+},{
+  "_id": {
+    "$oid": "643c78bb0b980af8c29d3cb1"
+  },
+  "game_name": "Dominion",
+  "update_date": "2022-10-15",
+  "update_method": "Rulebook",
+  "update_content": "When you play Dominion"
+},{
+  "_id": {
+    "$oid": "643c78bb0b980af8c29d3cb2"
+  },
+  "game_name": "Warhammer Age of Sigmar",
+  "update_date": "2022-09-23",
+  "update_method": "YouTube Video",
+  "update_content": "In this video"
+},{
+  "_id": {
+    "$oid": "643c78bb0b980af8c29d3cb3"
+  },
+  "game_name": "Kingdomino",
+  "update_date": "2022-08-01",
+  "update_method": "Online Forum",
+  "update_content": "If you are struggling to win at Kingdomino"
+},{
+  "_id": {
+    "$oid": "643c78bb0b980af8c29d3cb4"
+  },
+  "game_name": "Arkham Horror",
+  "update_date": "2022-11-05",
+  "update_method": "Strategy Guide",
+  "update_content": "To succeed at Arkham Horror"
+},{
+  "_id": {
+    "$oid": "643c78bb0b980af8c29d3cb5"
+  },
+  "game_name": "Twilight Imperium",
+  "update_date": "2022-07-19",
+  "update_method": "Reddit Post",
+  "update_content": "In Twilight Imperium"
+},{
+  "_id": {
+    "$oid": "643c78bb0b980af8c29d3cb6"
+  },
+  "game_name": "Sushi Go!",
+  "update_date": "2022-12-03",
+  "update_method": "Online Blog",
+  "update_content": "If you are new to Sushi Go!"
+},{
+  "_id": {
+    "$oid": "643c78bb0b980af8c29d3cb7"
+  },
+  "game_name": "Shadowrun",
+  "update_date": "2022-09-01",
+  "update_method": "Player's Handbook",
+  "update_content": "When creating your character in Shadowrun"
+},{
+  "_id": {
+    "$oid": "643c78bb0b980af8c29d3cb8"
+  },
+  "game_name": "Gloomhaven",
+  "update_date": "2022-10-10",
+  "update_method": "Online Forum",
+  "update_content": "To get the most out of Gloomhaven"
+},{
+  "_id": {
+    "$oid": "643c78bb0b980af8c29d3cb9"
+  },
+  "game_name": "Risk",
+  "update_date": "2022-11-20",
+  "update_method": "Strategy Guide",
+  "update_content": "In Risk"
+},{
+  "_id": {
+    "$oid": "643c78bb0b980af8c29d3cba"
+  },
+  "game_name": "Splendor",
+  "update_date": "2022-12-10",
+  "update_method": "Rulebook",
+  "update_content": "When playing Splendor"
+}]
