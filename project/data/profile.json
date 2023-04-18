@@ -1,0 +1,299 @@
+[{
+  "_id": {
+    "$oid": "643e07c00b980af8c29d3cce"
+  },
+  "username": "jdoe",
+  "nickname": "John",
+  "age": 25,
+  "gender": "male",
+  "region": "London",
+  "email": "jdoe@example.com",
+  "password": "password123",
+  "favorite": [
+    "Settlers of Catan",
+    "Scrabble",
+    "Ticket to Ride"
+  ],
+  "friends": [
+    "amiller",
+    "jlee",
+    "kdavis",
+    "bsmith"
+  ]
+},{
+  "_id": {
+    "$oid": "643e07c00b980af8c29d3ccf"
+  },
+  "username": "amiller",
+  "nickname": "Alice",
+  "age": 30,
+  "gender": "female",
+  "region": "Manchester",
+  "email": "amiller@example.com",
+  "password": "password456",
+  "favorite": [
+    "Chess",
+    "Monopoly"
+  ],
+  "friends": [
+    "jdoe",
+    "jlee",
+    "sbrown"
+  ]
+},{
+  "_id": {
+    "$oid": "643e07c00b980af8c29d3cd0"
+  },
+  "username": "jlee",
+  "nickname": "James",
+  "age": 27,
+  "gender": "male",
+  "region": "Birmingham",
+  "email": "jlee@example.com",
+  "password": "password789",
+  "favorite": [
+    "Risk",
+    "Pandemic"
+  ],
+  "friends": [
+    "jdoe",
+    "amiller",
+    "kdavis"
+  ]
+},{
+  "_id": {
+    "$oid": "643e07c00b980af8c29d3cd1"
+  },
+  "username": "kdavis",
+  "nickname": "Karen",
+  "age": 32,
+  "gender": "female",
+  "region": "Bristol",
+  "email": "kdavis@example.com",
+  "password": "passwordABC",
+  "favorite": [
+    "Ticket to Ride",
+    "Carcassonne"
+  ],
+  "friends": [
+    "jdoe",
+    "jlee",
+    "bsmith",
+    "gjones"
+  ]
+},{
+  "_id": {
+    "$oid": "643e07c00b980af8c29d3cd2"
+  },
+  "username": "bsmith",
+  "nickname": "Ben",
+  "age": 26,
+  "gender": "male",
+  "region": "Edinburgh",
+  "email": "bsmith@example.com",
+  "password": "passwordDEF",
+  "favorite": [
+    "Scrabble",
+    "Settlers of Catan"
+  ],
+  "friends": [
+    "kdavis",
+    "gjones"
+  ]
+},{
+  "_id": {
+    "$oid": "643e07c00b980af8c29d3cd3"
+  },
+  "username": "sbrown",
+  "nickname": "Samantha",
+  "age": 28,
+  "gender": "female",
+  "region": "Leeds",
+  "email": "sbrown@example.com",
+  "password": "passwordGHI",
+  "favorite": [
+    "Monopoly",
+    "Risk"
+  ],
+  "friends": [
+    "amiller",
+    "gjones"
+  ]
+},{
+  "_id": {
+    "$oid": "643e07c00b980af8c29d3cd4"
+  },
+  "username": "gjones",
+  "nickname": "George",
+  "age": 29,
+  "gender": "male",
+  "region": "Glasgow",
+  "email": "gjones@example.com",
+  "password": "passwordJKL",
+  "favorite": [
+    "Pandemic",
+    "Carcassonne"
+  ],
+  "friends": [
+    "bsmith",
+    "sbrown",
+    "kdavis"
+  ]
+},{
+  "_id": {
+    "$oid": "643e07c00b980af8c29d3cd5"
+  },
+  "username": "johndoe",
+  "nickname": "JD",
+  "age": 26,
+  "gender": "male",
+  "region": "London",
+  "email": "johndoe@example.com",
+  "password": "password",
+  "friends": [
+    "janedoe"
+  ],
+  "favorite": [
+    "Chess",
+    "Settlers of Catan"
+  ]
+},{
+  "_id": {
+    "$oid": "643e07c00b980af8c29d3cd6"
+  },
+  "username": "janedoe",
+  "nickname": "JDoe",
+  "age": 24,
+  "gender": "female",
+  "region": "London",
+  "email": "janedoe@example.com",
+  "password": "password",
+  "friends": [
+    "johndoe",
+    "bobsmith"
+  ],
+  "favorite": [
+    "Pandemic",
+    "Chess"
+  ]
+},{
+  "_id": {
+    "$oid": "643e07c00b980af8c29d3cd7"
+  },
+  "username": "bobsmith",
+  "nickname": "BSmith",
+  "age": 28,
+  "gender": "male",
+  "region": "Manchester",
+  "email": "bobsmith@example.com",
+  "password": "password",
+  "friends": [
+    "janedoe"
+  ],
+  "favorite": [
+    "Settlers of Catan",
+    "Ticket to Ride"
+  ]
+},{
+  "_id": {
+    "$oid": "643e07c00b980af8c29d3cd8"
+  },
+  "username": "janejones",
+  "nickname": "JJ",
+  "age": 22,
+  "gender": "female",
+  "region": "Paris",
+  "email": "janejones@example.com",
+  "password": "password",
+  "friends": [
+    "jeffblack"
+  ],
+  "favorite": [
+    "Pandemic",
+    "Chess"
+  ]
+},{
+  "_id": {
+    "$oid": "643e07c00b980af8c29d3cd9"
+  },
+  "username": "jeffblack",
+  "nickname": "JBlack",
+  "age": 29,
+  "gender": "male",
+  "region": "Berlin",
+  "email": "jeffblack@example.com",
+  "password": "password",
+  "friends": [
+    "janejones"
+  ],
+  "favorite": [
+    "Settlers of Catan"
+  ]
+},{
+  "_id": {
+    "$oid": "643e07c00b980af8c29d3cda"
+  },
+  "username": "emilybrown",
+  "nickname": "EBrown",
+  "age": 31,
+  "gender": "female",
+  "region": "Birmingham",
+  "email": "emilybrown@example.com",
+  "password": "password",
+  "friends": [],
+  "favorite": [
+    "Ticket to Ride"
+  ]
+},{
+  "_id": {
+    "$oid": "643e07c00b980af8c29d3cdb"
+  },
+  "username": "davidgreen",
+  "nickname": "DGreen",
+  "age": 27,
+  "gender": "male",
+  "region": "Liverpool",
+  "email": "davidgreen@example.com",
+  "password": "password",
+  "friends": [
+    "maryjones"
+  ],
+  "favorite": [
+    "Pandemic"
+  ]
+},{
+  "_id": {
+    "$oid": "643e07c00b980af8c29d3cdc"
+  },
+  "username": "maryjones",
+  "nickname": "MJ",
+  "age": 25,
+  "gender": "female",
+  "region": "Glasgow",
+  "email": "maryjones@example.com",
+  "password": "password",
+  "friends": [
+    "davidgreen",
+    "adamwhite"
+  ],
+  "favorite": [
+    "Settlers of Catan"
+  ]
+},{
+  "_id": {
+    "$oid": "643e07c00b980af8c29d3cdd"
+  },
+  "username": "adamwhite",
+  "nickname": "AWhite",
+  "age": 23,
+  "gender": "male",
+  "region": "Edinburgh",
+  "email": "adamwhite@example.com",
+  "password": "password",
+  "friends": [
+    "maryjones"
+  ],
+  "favorite": [
+    "Ticket to Ride"
+  ]
+}]

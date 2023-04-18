@@ -1,25 +1,20 @@
-import {React, useMemo, useEffect, useState} from 'react'
-import {getData, useData, getData1} from '../util/data'
-import { AudioOutlined, DownOutlined, ExportOutlined } from '@ant-design/icons';
-import { Input, Space, Menu, Dropdown, Avatar, List, Radio, Button } from 'antd';
+import {React, useEffect, useMemo,} from 'react'
+import { getData, useData } from '../util/data'
+import { AudioOutlined, ExportOutlined } from '@ant-design/icons';
+import { Input,Avatar, List,Button } from 'antd';
 import './Community.css';
 import { Routes, Route, Link} from "react-router-dom";
 
 
 export default function Community() {const context = useData()
-    const { Search } = Input;
-    const suffix = (
-        <AudioOutlined
-            style={{
-            fontSize: 16,
-            color: '#1890ff',
-            }}
-        />
-      );
-
+    const { Search } = Input;  
     const onSearch = (value) => console.log(value);
-
-
+    
+    
+    useEffect(()=>{
+      getData("getGame",{"game_name":"Pandemic"}).then((res)=>{console.log(res)});
+    },)
+    
 
 
       //游戏列表

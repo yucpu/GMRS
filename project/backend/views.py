@@ -2,7 +2,7 @@
 from django.shortcuts import render, redirect
 from pymongo import MongoClient
 from bson.objectid import ObjectId
-from .models import User
+from .models import User, Game, Review, Discussion, Guide
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.http import JsonResponse
@@ -28,6 +28,7 @@ def reset_password(request):
             # update user's password and save to database
             user.password = password
             user.save()
+            response_data = {}
             return HttpResponseRedirect(json.dumps(response_data), content_type='application/json')
         else:
             # display error message if user not found or email does not match
@@ -64,11 +65,11 @@ def add_user(request):
         }
         user = User(user_dict)
         user.save()
-
-        response_data = {"message": "User created successfully"}
+        
+        response_data = {"message": "User created successfully","code":200}
         return HttpResponse(json.dumps(response_data), content_type='application/json')
     else:
-        response_data = {}
+        response_data = {"message": "Illegal Request","code":400}
         return HttpResponse(json.dumps(response_data), content_type='application/json')
 
 
@@ -76,9 +77,10 @@ def add_user(request):
 
 
 def login(request):
+    print("Login Request Find")
     if request.method == 'POST':
         # retrieve form data
-        print(request.body)
+        print("82 ", request.body)
         result = json.loads(request.body.decode('utf-8'))
         username = result.get('account')
         password = result.get('password')
@@ -108,7 +110,7 @@ def login(request):
                 }
             }
             response = HttpResponse(json.dumps(response_data), content_type='application/json')
-            response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+            response['Access-Control-Allow-Origin'] = '*'
             response['Access-Control-Allow-Methods'] = 'POST'
             return response
         else:
@@ -117,13 +119,13 @@ def login(request):
             response_data = {"error_message": error_message}
             print(error_message)
             response = HttpResponse(json.dumps(response_data), content_type='application/json')
-            response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+            response['Access-Control-Allow-Origin'] = '*'
             response['Access-Control-Allow-Methods'] = 'POST'
             return response
     else:
         response_data = {}
         response = HttpResponse(json.dumps(response_data), content_type='application/json')
-        response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+        response['Access-Control-Allow-Origin'] = '*'
         response['Access-Control-Allow-Methods'] = 'POST'
         return response
 
@@ -168,7 +170,7 @@ def update_profile(request):
             }
         }
         response = HttpResponse(json.dumps(response_data), content_type='application/json')
-        response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+        response['Access-Control-Allow-Origin'] = '*'
         response['Access-Control-Allow-Methods'] = 'POST'
         return response
     else:
@@ -189,37 +191,142 @@ def update_profile(request):
             }
         }
         response = HttpResponse(json.dumps(response_data), content_type='application/json')
-        response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+        response['Access-Control-Allow-Origin'] = '*'
         response['Access-Control-Allow-Methods'] = 'GET'
         return response
 
     
-def add_friend(request, username):
-    # get current user object
-    user_id = request.session.get('user_id')
-    user = User.get_user_by_username(user_id)
-    friend_username = username
-    # add friend to user's friends list and save to database
-    if friend_username not in user.friends:
-        user.friends.append(friend_username)
-        user.save()
+def add_friend(request):
+    if request.method == "POST":
+        user_id = request.session.get('user_id')
+        print("202: ", user_id)
+        friend_username = request.POST.get("username")
+        user = User.get_user_by_id(user_id)
+        friend = User.get_user_by_username(friend_username)
+        if friend is not None and friend not in user.friends and user not in friend.friends:
+            user.friends.append(friend_username)
+            friend.friends.append(user)
+            user.save()
+            friend.save()
 
-        # get friend user object
-        friend = User.get_user_by_username(username)
-        if not friend:
-            response_data = {"error_message": "User not found"}
-            return HttpResponse(json.dumps(response_data), content_type='application/json')
+            response_data = {"message": "Friend added successfully"}
+        else:
+            response_data = {"messafe": "Friend added failed"}
 
-        # add user to friend's friends list and save to database
-        friend.friends.append(user.username)
-        friend.save()
-
-        response_data = {"message": "Friend added successfully"}
         response = HttpResponse(json.dumps(response_data), content_type='application/json')
-        response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+        response['Access-Control-Allow-Origin'] = '*'
         response['Access-Control-Allow-Methods'] = 'POST'
+
+    return response
+    # # get current user object
+    # user_id = request.session.get('user_id')
+    # user = User.get_user_by_username(user_id)
+    # friend_username = username
+    # # add friend to user's friends list and save to database
+    # if friend_username not in user.friends:
+    #     user.friends.append(friend_username)
+    #     user.save()
+    #
+    #     # get friend user object
+    #     friend = User.get_user_by_username(username)
+    #     if not friend:
+    #         response_data = {"error_message": "User not found"}
+    #         return HttpResponse(json.dumps(response_data), content_type='application/json')
+    #
+    #     # add user to friend's friends list and save to database
+    #     friend.friends.append(user.username)
+    #     friend.save()
+    #
+    #     response_data = {"message": "Friend added successfully"}
+    #     response = HttpResponse(json.dumps(response_data), content_type='application/json')
+    #     response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+    #     response['Access-Control-Allow-Methods'] = 'POST'
+    #     return response
+
+
+def community(request):
+    # if request.method == "GET":
+    game_names = Game.get_all_game()
+    print(game_names)
+
+    response = HttpResponse(json.dumps(game_names, indent=4))
+    response['Access-Control-Allow-Origin'] = "*"
+    response['Access-Control-Allow-Methods'] = "GET"
+
+    print(response)
+
+    return response
+
+def get_all_game(request):
+    game_list = Game.get_all_game()
+
+    response = HttpResponse(json.dumps(game_list, indent=4))
+    response['Access-Control-Allow-Origin'] = "*"
+    response['Access-Control-Allow-Methods'] = "GET"
+
+    print(json.loads(response.content))
+    return response
+def select_community(request):
+    if request.method == "GET":
+        game_name = request.GET.get("game_name")
+        print("252:", game_name)
+        reviews = Review.get_reviews(game_name)
+        print("254", reviews)
+        discussions = Discussion.get_discussion(game_name)
+        print(discussions)
+        guides = Guide.get_guide(game_name)
+        print("258", guides)
+
+        community_info = [reviews, discussions, guides]
+        response = HttpResponse(json.dumps(community_info, indent=4))
+        response['Access-Control-Allow-Origin'] = "*"
+        response['Access-Control-Allow-Methods'] = "GET"
+        print("这是最后的res:", response)
+
+    return response
+
+def post_review(request):
+    if request.method == "POST":
+        result = json.loads(request.body.decode('utf-8'))
+        game_name = result.get("game_name")
+        username = result.get("username")
+        review_title = result.get("review_title")
+        review_content = result.get("review_content")
+        rating = result.get("rating")
+        new_post = {
+            "game_name": game_name,
+            "username": username,
+            "review_title": review_title,
+            "review_content": review_content,
+            "rating": rating
+        }
+
+        post = Review(new_post)
+        post_dict = vars(post)
+        post_json = json.dumps(post_dict)
+        post.save()
+
+        response = HttpResponse(json.dumps(post_json))
+        response['Access-Control-Allow-Origin'] = "*"
+        response['Access-Control-Allow-Methods'] = "POST"
+
         return response
-    
+
+
+def getGame(request):
+    if request.method == 'GET':
+        game_name = request.GET.get("game_name")
+        print("239:", game_name)
+        game_info = Game.get_game(game_name)
+        game_info["_id"] = str(game_info["_id"])
+        print("240: ", game_info)
+
+        response = HttpResponse(json.dumps(game_info), content_type='application/json')
+        response['Access-Control-Allow-Origin'] = "*"
+        response['Access-Control-Allow-Methods'] = "GET"
+
+    return response
+
 def get_friends(request):
     if request.method == 'GET':
         # get current user object
@@ -233,7 +340,7 @@ def get_friends(request):
             "friends": friends,
         }
         response = HttpResponse(json.dumps(response_data), content_type='application/json')
-        response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+        response['Access-Control-Allow-Origin'] = '*'
         response['Access-Control-Allow-Methods'] = 'GET'
         return response
 
@@ -262,13 +369,13 @@ def add_game(request):
             }
             status_code = 401
         response = HttpResponse(json.dumps(response_data), content_type='application/json', status=status_code)
-        response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+        response['Access-Control-Allow-Origin'] = '*'
         response['Access-Control-Allow-Methods'] = 'POST'
         return response
     else:
         response_data = {}
         response = HttpResponse(json.dumps(response_data), content_type='application/json')
-        response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+        response['Access-Control-Allow-Origin'] = '*'
         response['Access-Control-Allow-Methods'] = 'GET'
         return response
     
@@ -323,13 +430,13 @@ def search_friends(request):
 
         # Return response
         response = HttpResponse(json.dumps(response_data), content_type='application/json')
-        response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+        response['Access-Control-Allow-Origin'] = '*'
         response['Access-Control-Allow-Methods'] = 'POST'
         return response
 
     else:
         response_data = {}
         response = HttpResponse(json.dumps(response_data), content_type='application/json')
-        response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+        response['Access-Control-Allow-Origin'] = '*'
         response['Access-Control-Allow-Methods'] = 'POST'
         return response

@@ -4,3 +4,6 @@ project/gmrs/node_modules/
 # ignore build
 project/gmrs/build/
 
+# ignore SERVER
+
+project/SERVER

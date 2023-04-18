@@ -31,7 +31,7 @@ export default function LoginPage() {
     let handleInput = (event,type) =>{
         let value = event.target.value;
         dispatch({type:type, value:value});
-        console.log(data.account);      
+        
     }
 
     let handleSubmit = () =>{
@@ -51,6 +51,11 @@ export default function LoginPage() {
             dispatch({type:"disabled", value:""})
             dispatch({type:"loading", value:false})
         }).then(()=>navigate("/app/store"))
+        .catch(()=>{
+            message.error("Server Error");
+            dispatch({type:"disabled", value:""})
+            dispatch({type:"loading", value:false})
+        })
     }
 
     return useMemo( ()=>{

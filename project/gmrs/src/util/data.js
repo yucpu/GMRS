@@ -7,8 +7,7 @@ export const DataContext = createContext(null);
 const {Provider} = DataContext;
 // const serverHost = "https://f0e1017f-cc79-416f-a80c-5c1fb7d4e267.mock.pstmn.io/";
 
-// const serverHost = "https://my-json-server.typicode.com/yucpu/jsTPS/"
-const serverHost = "http://localhost:8000/ç"
+const serverHost = "http://127.0.0.1:8000/"
 
 // const firebaseConfig = {
 //     apiKey: "AIzaSyDC-E59movlz1LkBdPfyIhUqTYJCLlb2kA",
