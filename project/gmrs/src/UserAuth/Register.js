@@ -1,5 +1,5 @@
 import {TextField, Typography } from '@mui/material'
-import {Button} from 'antd';
+import {Button, message} from 'antd';
 import { Tag } from 'antd'
 import React, {useMemo, useReducer, useState} from 'react'
 import {generateToken, postData} from "../util/data"
@@ -31,11 +31,14 @@ export default function Register() {
     }
 
     let handleSubmit= () =>{
+        if(data.username == "" || data.password == "" || data.email == ""){
+            return message.error("Empty Information")
+        }
         setLoading("disable");
         postData("register", data).then((res)=>{
             console.log(res);
             setLoading(false);
-            navigate("/app")
+            navigate("/auth")
         }).catch((err)=>{
             console.log(err);
             setLoading(false);

@@ -43,16 +43,15 @@ export default function LoginPage() {
                 context.dispatch({type:"token", value:auth.token}); // get toten
                 context.dispatch({type:"user",value:auth.user}); // get user
                 localStorage.setItem("token", auth.token);
-            
                 localStorage.setItem("user",JSON.stringify(auth.user));
             }else{
-                message.error("Please enter correct password")
+                message.error("Please enter correct password");
             }
             dispatch({type:"disabled", value:""})
             dispatch({type:"loading", value:false})
         }).then(()=>navigate("/app/store"))
         .catch(()=>{
-            message.error("Server Error");
+            message.error("Login Failed: due to server error or wrong password");
             dispatch({type:"disabled", value:""})
             dispatch({type:"loading", value:false})
         })
@@ -78,9 +77,7 @@ export default function LoginPage() {
                     <Button type='primary' size='small' loading={data.loading} onClick={handleSubmit}>Submit</Button>
                 </div>
             </div>
-            
             )
-
         },
         [data]
     )

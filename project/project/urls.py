@@ -19,10 +19,10 @@ from backend import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('reset_password/', views.reset_password, name='reset_password'),
+    path('reset', views.reset_password, name='reset_password'),
     path('register', views.add_user, name='add_user'),
     path('login', views.login, name='login'),
-    path('update_profile/', views.update_profile, name='update_profile'),
+    path('updateInfo', views.update_profile, name='update_profile'),
     path('add_friend', views.add_friend, name='add_friend'),
     path('get_friends/', views.get_friends, name='get_friends'),
     path('getGame', views.getGame, name="getGame"),

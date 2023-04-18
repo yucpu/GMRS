@@ -1,5 +1,5 @@
 import React, {useMemo, useReducer, useState}from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Button } from 'antd'
 import { Typography, TextField } from '@mui/material'
 import { postData } from '../util/data'
@@ -21,6 +21,7 @@ const reducer = (data, action)=>{
 export default function Reset() {
     const [data, dispatch] = useReducer(reducer,{username:"", security:"", newPassword:""});
     const [loading,setLoading] = useState(false);
+    const navigate = useNavigate();
     let handleInput = (event,type) =>{
         let value = event.target.value;
         dispatch({type:type, value:value});        
@@ -31,6 +32,7 @@ export default function Reset() {
         postData("reset", data).then((res)=>{
             console.log(res);
             setLoading(false);
+            navigate("/auth");
         }).catch((err)=>{
             console.log(err);
             setLoading(false);
