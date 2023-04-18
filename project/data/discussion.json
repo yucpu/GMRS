@@ -1,0 +1,161 @@
+[{
+  "_id": {
+    "$oid": "643c73ee0b980af8c29d3c90"
+  },
+  "game_name": "Settlers of Catan",
+  "username": "lizzybennett",
+  "discussion_title": "Trading Strategies",
+  "discussion_content": "What's your favorite trading strategy in Settlers of Catan? Do you prefer to trade with one player or multiple players at once?"
+},{
+  "_id": {
+    "$oid": "643c73ee0b980af8c29d3c91"
+  },
+  "game_name": "Pandemic",
+  "username": "robbiemac",
+  "discussion_title": "Expert Difficulty",
+  "discussion_content": "Has anyone successfully beaten Pandemic on the expert difficulty level? If so, what tips do you have?"
+},{
+  "_id": {
+    "$oid": "643c73ee0b980af8c29d3c92"
+  },
+  "game_name": "Warhammer 40",
+  "username": "kikidoodle",
+  "discussion_title": "Army Building",
+  "discussion_content": "I'm new to Warhammer 40 and I'm struggling with army building. Any tips for creating a balanced army?"
+},{
+  "_id": {
+    "$oid": "643c73ee0b980af8c29d3c93"
+  },
+  "game_name": "Magic: The Gathering",
+  "username": "ninadancer",
+  "discussion_title": "Deck Building",
+  "discussion_content": "I'm trying to build a mono-red burn deck for Magic: The Gathering. Any suggestions for which cards I should include?"
+},{
+  "_id": {
+    "$oid": "643c73ee0b980af8c29d3c94"
+  },
+  "game_name": "Dungeons & Dragons",
+  "username": "sparky12",
+  "discussion_title": "Campaign Ideas",
+  "discussion_content": "I'm a DM for a Dungeons & Dragons campaign and I'm running out of ideas. What are some of your favorite campaign ideas?"
+},{
+  "_id": {
+    "$oid": "643c73ee0b980af8c29d3c95"
+  },
+  "game_name": "Ticket to Ride",
+  "username": "sassysara",
+  "discussion_title": "Strategy Tips",
+  "discussion_content": "What's your go-to strategy for winning Ticket to Ride? Do you focus on building long routes or completing shorter routes first?"
+},{
+  "_id": {
+    "$oid": "643c73ee0b980af8c29d3c96"
+  },
+  "game_name": "Codenames",
+  "username": "lulubelle",
+  "discussion_title": "Team Dynamics",
+  "discussion_content": "How do you work with your team in Codenames? Do you have any strategies for effective communication?"
+},{
+  "_id": {
+    "$oid": "643c73ee0b980af8c29d3c97"
+  },
+  "game_name": "Memoir '44",
+  "username": "bubblegum",
+  "discussion_title": "Unit Tactics",
+  "discussion_content": "What are your favorite unit tactics in Memoir '44? Do you prefer to use infantry, tanks, or artillery?"
+},{
+  "_id": {
+    "$oid": "643c73ee0b980af8c29d3c98"
+  },
+  "game_name": "Netrunner",
+  "username": "magpie",
+  "discussion_title": "Deck Building",
+  "discussion_content": "I'm struggling to create a successful deck in Netrunner. Any advice on how to build a solid runner or corporation deck?"
+},{
+  "_id": {
+    "$oid": "643c73ee0b980af8c29d3c99"
+  },
+  "game_name": "Pathfinder Paizo Publishing",
+  "username": "jammydodger",
+  "discussion_title": "Character Creation",
+  "discussion_content": "What are some of your favorite character builds in Pathfinder? Do you prefer to focus on combat or roleplaying abilities?"
+},{
+  "_id": {
+    "$oid": "643c73ee0b980af8c29d3c9a"
+  },
+  "game_name": "Carcassonne",
+  "username": "eddbrock",
+  "discussion_title": "Territory Control",
+  "discussion_content": "How do you control territories in Carcassonne? Do you focus on blocking your opponent's moves or expanding your own territory?"
+},{
+  "_id": {
+    "$oid": "643c73ee0b980af8c29d3c9b"
+  },
+  "game_name": "Agricola",
+  "username": "gavlar",
+  "discussion_title": "Resource Management",
+  "discussion_content": "What's your strategy for managing resources in Agricola? Do you focus on food production or building improvements?"
+},{
+  "_id": {
+    "$oid": "643c73ee0b980af8c29d3c9c"
+  },
+  "game_name": "Warhammer Age of Sigmar Games Workshop",
+  "username": "rickyricardo",
+  "discussion_title": "Army Selection",
+  "discussion_content": "I'm new to Warhammer Age of Sigmar and I'm having trouble selecting an army. Any suggestions for a good starter army?"
+},{
+  "_id": {
+    "$oid": "643c73ee0b980af8c29d3c9d"
+  },
+  "game_name": "Dominion",
+  "username": "rosieposie",
+  "discussion_title": "Deck Building",
+  "discussion_content": "What are some of your favorite card combinations in Dominion? Do you prefer to focus on action cards or victory point cards?"
+},{
+  "_id": {
+    "$oid": "643c73ee0b980af8c29d3c9e"
+  },
+  "game_name": "Pathfinder Adventure Card Game",
+  "username": "jonobear",
+  "discussion_title": "Card Strategies",
+  "discussion_content": "What are your favorite card strategies in Pathfinder Adventure Card Game? Do you prefer to focus on attacking or defending?"
+},{
+  "_id": {
+    "$oid": "643c73ee0b980af8c29d3c9f"
+  },
+  "game_name": "Shadowrun",
+  "username": "maddiemoo",
+  "discussion_title": "Character Creation",
+  "discussion_content": "What are some of your favorite character builds in Shadowrun? Do you prefer to play as a street samurai, hacker, or mage?"
+},{
+  "_id": {
+    "$oid": "643c73ee0b980af8c29d3ca0"
+  },
+  "game_name": "Kingdomino",
+  "username": "benjaminbutton",
+  "discussion_title": "Territory Building",
+  "discussion_content": "How do you build your territories in Kingdomino? Do you prioritize building on higher numbered tiles or tiles that match your current terrain?"
+},{
+  "_id": {
+    "$oid": "643c73ee0b980af8c29d3ca1"
+  },
+  "game_name": "7 Wonders",
+  "username": "kazza",
+  "discussion_title": "Card Selection",
+  "discussion_content": "What are your favorite card selections in 7 Wonders? Do you prefer to focus on science, military, or civilian cards?"
+},{
+  "_id": {
+    "$oid": "643c73ee0b980af8c29d3ca2"
+  },
+  "game_name": "Bolt Action",
+  "username": "tazmania",
+  "discussion_title": "Unit Selection",
+  "discussion_content": "I'm new to Bolt Action and I'm having trouble selecting the right units for my army. Any suggestions for a good starter army?"
+},{
+  "_id": {
+    "$oid": "643c73ee0b980af8c29d3ca3"
+  },
+  "game_name": "Legend of the Five Rings",
+  "username": "gingeninja",
+  "discussion_title": "Strategy Tips",
+  "discussion_content": "What's your go-to strategy for winning Legend of the Five Rings? Do you prefer to focus on military, political, or honor victory conditions"
+}]

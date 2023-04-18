@@ -1,0 +1,381 @@
+[{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c58"
+  },
+  "game_name": "Settlers of Catan",
+  "publisher": "Mayfair Games",
+  "release_date": 1995,
+  "genre": "Board games",
+  "rating": 4.3,
+  "numOfPpl": 300
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c59"
+  },
+  "game_name": "Pandemic",
+  "publisher": "Z-Man Games",
+  "release_date": 2008,
+  "genre": "Board games",
+  "rating": 4.5,
+  "numOfPpl": 1200
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c5a"
+  },
+  "game_name": "Warhammer 40",
+  "publisher": "000 Games Workshop",
+  "release_date": 1987,
+  "genre": "Miniature war games",
+  "rating": 4.1,
+  "numOfPpl": 400
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c5b"
+  },
+  "game_name": "Magic: The Gathering",
+  "publisher": "Wizards of the Coast",
+  "release_date": 1993,
+  "genre": "Card games",
+  "rating": 4.8,
+  "numOfPpl": 600
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c5c"
+  },
+  "game_name": "Dungeons & Dragons",
+  "publisher": "Wizards of the Coast",
+  "release_date": 1974,
+  "genre": "RPG",
+  "rating": 4.7,
+  "numOfPpl": 900
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c5d"
+  },
+  "game_name": "Ticket to Ride",
+  "publisher": "Days of Wonder",
+  "release_date": 2004,
+  "genre": "Board games",
+  "rating": 4.2,
+  "numOfPpl": 5000
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c5e"
+  },
+  "game_name": "Codenames",
+  "publisher": "Czech Games Edition",
+  "release_date": 2015,
+  "genre": "Board games",
+  "rating": 4.6,
+  "numOfPpl": 111
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c5f"
+  },
+  "game_name": "Memoir '44",
+  "publisher": "Days of Wonder",
+  "release_date": 2004,
+  "genre": "Miniature war games",
+  "rating": 4,
+  "numOfPpl": 900
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c60"
+  },
+  "game_name": "Netrunner",
+  "publisher": "Fantasy Flight Games",
+  "release_date": 2012,
+  "genre": "Card games",
+  "rating": 4.4,
+  "numOfPpl": 1935
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c61"
+  },
+  "game_name": "Pathfinder Paizo Publishing",
+  "publisher": "Tencent",
+  "release_date": 2009,
+  "genre": "\"RPG\"",
+  "rating": 4.3,
+  "numOfPpl": 5666
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c62"
+  },
+  "game_name": "Carcassonne",
+  "publisher": "Z-Man Games",
+  "release_date": 2000,
+  "genre": "Board games",
+  "rating": 4.2,
+  "numOfPpl": 666
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c63"
+  },
+  "game_name": "Agricola",
+  "publisher": "Z-Man Games",
+  "release_date": 2007,
+  "genre": "Board games",
+  "rating": 4.4,
+  "numOfPpl": 222
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c64"
+  },
+  "game_name": "Warhammer Age of Sigmar Games Workshop",
+  "publisher": 2015,
+  "release_date": "Miniature war games",
+  "genre": 3.9,
+  "numOfPpl": 666,
+  "rating": "5.0"
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c65"
+  },
+  "game_name": "Dominion",
+  "publisher": "Rio Grande Games",
+  "release_date": 2008,
+  "genre": "Card games",
+  "rating": 4.6,
+  "numOfPpl": 777
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c66"
+  },
+  "game_name": "Pathfinder Adventure Card Game",
+  "publisher": "Pazio Publishing",
+  "release_date": 2013,
+  "genre": "Card games",
+  "rating": 4.3,
+  "numOfPpl": 234
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c67"
+  },
+  "game_name": "Shadowrun",
+  "publisher": "FASA Corporation",
+  "release_date": 1989,
+  "genre": "RPG",
+  "rating": 4.5,
+  "numOfPpl": 345
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c68"
+  },
+  "game_name": "Kingdomino",
+  "publisher": "Blue Orange Games",
+  "release_date": 2016,
+  "genre": "Board games",
+  "rating": 4.1,
+  "numOfPpl": 250
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c69"
+  },
+  "game_name": "7 Wonders",
+  "publisher": "Repos Production",
+  "release_date": 2010,
+  "genre": "Board games",
+  "rating": 4.4,
+  "numOfPpl": 700
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c6a"
+  },
+  "game_name": "Bolt Action",
+  "publisher": "Warlord Games",
+  "release_date": 2012,
+  "genre": "Miniature war games",
+  "rating": 4,
+  "numOfPpl": 233600
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c6b"
+  },
+  "game_name": "Legend of the Five Rings",
+  "publisher": " Alderac Entertainment Group",
+  "release_date": 1995,
+  "genre": "Card games",
+  "rating": 4.3,
+  "numOfPpl": 3000
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c6c"
+  },
+  "game_name": "Starfinder",
+  "publisher": "Paizo Publishing",
+  "release_date": 2017,
+  "genre": "RPG",
+  "rating": 4.2,
+  "numOfPpl": 300
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c6d"
+  },
+  "game_name": "Catan Cities & Knights",
+  "publisher": "Mayfair Games",
+  "release_date": 1998,
+  "genre": "Board games",
+  "rating": 4.5,
+  "numOfPpl": 4088
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c6e"
+  },
+  "game_name": "Scythe",
+  "publisher": "Stonemaier Games",
+  "release_date": 2016,
+  "genre": "Board games",
+  "rating": 4.7,
+  "numOfPpl": 14234
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c6f"
+  },
+  "game_name": "Flames of War",
+  "publisher": "Battlefront Miniatures",
+  "release_date": 2002,
+  "genre": "Miniature war games",
+  "rating": 3.8,
+  "numOfPpl": 2345
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c70"
+  },
+  "game_name": "Arkham Horror",
+  "publisher": "Fantasy Flight Games",
+  "release_date": 2005,
+  "genre": "Board games",
+  "rating": 4.3,
+  "numOfPpl": 563
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c71"
+  },
+  "game_name": "Twilight Imperium",
+  "publisher": " Fantasy Flight Games",
+  "release_date": 1997,
+  "genre": "Board games",
+  "rating": 4.8,
+  "numOfPpl": 2345
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c72"
+  },
+  "game_name": "Warhammer Underworlds Games Workshop",
+  "publisher": 2017,
+  "release_date": "Miniature war games",
+  "genre": "Board",
+  "numOfPpl": 78,
+  "rating": 4
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c73"
+  },
+  "game_name": "Sushi Go!",
+  "publisher": "Gamewright",
+  "release_date": 2013,
+  "genre": "Card games",
+  "rating": 4.5,
+  "numOfPpl": 467
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c74"
+  },
+  "game_name": "Shadowrun Anarchy",
+  "publisher": " Catalyst Game Labs",
+  "release_date": 2016,
+  "genre": "RPG",
+  "rating": 4.2,
+  "numOfPpl": 87
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c75"
+  },
+  "game_name": "Gloomhaven",
+  "publisher": "Cephalofair Games",
+  "release_date": 2017,
+  "genre": "Board games",
+  "rating": 4.9,
+  "numOfPpl": 2346
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c76"
+  },
+  "game_name": "Risk",
+  "publisher": "Parker Brothers",
+  "release_date": 1957,
+  "genre": "Board games",
+  "rating": 3.6,
+  "numOfPpl": 345
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c77"
+  },
+  "game_name": "Warhammer 40",
+  "publisher": "000 Kill Team Games Workshop",
+  "release_date": 2013,
+  "genre": "Miniature war games",
+  "rating": 4,
+  "numOfPpl": 99
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c78"
+  },
+  "game_name": "Dominion Intrigue",
+  "publisher": "Rio Grande Games",
+  "release_date": 2009,
+  "genre": "Card games",
+  "rating": 4.5,
+  "numOfPpl": 14
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c79"
+  },
+  "game_name": "Star Wars RPG",
+  "publisher": " Fantasy Flight Games",
+  "release_date": 2012,
+  "genre": "RPG",
+  "rating": 4.3,
+  "numOfPpl": 2345
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c7a"
+  },
+  "game_name": "Splendor",
+  "publisher": "Space Cowboys",
+  "release_date": 2014,
+  "genre": "Board games",
+  "rating": 4.2,
+  "numOfPpl": 66
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c7b"
+  },
+  "game_name": "Magic: The Gathering Arena of the Planeswalkers",
+  "publisher": "Hasbro",
+  "release_date": 2015,
+  "genre": "Board games",
+  "rating": 3.8,
+  "numOfPpl": 111
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c7c"
+  },
+  "game_name": "Small World",
+  "publisher": "Days of Wonder",
+  "release_date": 2009,
+  "genre": "Board games",
+  "rating": 4.2,
+  "numOfPpl": 67
+},{
+  "_id": {
+    "$oid": "643b63f30b980af8c29d3c7d"
+  },
+  "game_name": "Infinity Corvus Belli",
+  "publisher": 2005,
+  "release_date": "Miniature war games",
+  "genre": "Board games",
+  "numOfPpl": 785,
+  "rating": 4.7
+}]

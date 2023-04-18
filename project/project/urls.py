@@ -23,6 +23,12 @@ urlpatterns = [
     path('add_user/', views.add_user, name='add_user'),
     path('login', views.login, name='login'),
     path('update_profile/', views.update_profile, name='update_profile'),
-    path('add_friend/<str:username>/', views.add_friend, name='add_friend'),
-    path('get_friends/', views.get_friends, name='get_friends')
+    path('add_friend', views.add_friend, name='add_friend'),
+    path('get_friends/', views.get_friends, name='get_friends'),
+    path('getGame', views.getGame, name="getGame"),
+    path('community', views.community, name = "community"),
+    path('select_community', views.select_community, name = 'select_community'),
+    path('app/Review/post_review', views.post_review, name = 'post_review'),
+    path('app/community/get_all_game', views.get_all_game, name = 'get_alL_friend')
+
 ]
