@@ -72,6 +72,7 @@ export const useData = ()=>{
 
 export async function login(data){
     let url = serverHost+ 'login';
+    console.log(url);
     let request = new Request(url, {
         method: 'POST',
         mode: 'cors',

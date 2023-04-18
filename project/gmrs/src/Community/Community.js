@@ -1,4 +1,4 @@
-import {React, useEffect, useMemo,} from 'react'
+import {React, useEffect, useMemo, useState,} from 'react'
 import { getData, useData } from '../util/data'
 import { AudioOutlined, ExportOutlined } from '@ant-design/icons';
 import { Input,Avatar, List,Button } from 'antd';
@@ -9,16 +9,15 @@ import { Routes, Route, Link} from "react-router-dom";
 export default function Community() {const context = useData()
     const { Search } = Input;  
     const onSearch = (value) => console.log(value);
-    
+    const [games, setGames] = useState([]); 
     
     useEffect(()=>{
-      getData("getGame",{"game_name":"Pandemic"}).then((res)=>{console.log(res)});
-    },)
+      getData("get_all_game",{}).then((res)=>{setGames(res)});
+    },[])
     
 
-
       //游戏列表
-    const data = [
+    let data = [
     {
       title: 'God of War Community',
       avatar: 'https://cdn.cloudflare.steamstatic.com/steam/apps/1593500/header.jpg?t=1650554420',
@@ -54,7 +53,7 @@ export default function Community() {const context = useData()
     const position = 'bottom';
     const align = 'center';
 
-    const suggested = [
+    let suggested = [
     {
       title: 'Ant Design Title 1',
       avatar: 'https://cdn.cloudflare.steamstatic.com/steam/apps/648800/header.jpg?t=1655744208'
@@ -80,19 +79,21 @@ export default function Community() {const context = useData()
         return (
             <div id='Community'>
                 <div className='search-part2'>
-                    <Search id='search' className='search' placeholder="Search for a community" enterButton="Search" size="large" suffix={suffix} onSearch={onSearch}/>
+                    <Search id='search' className='search' placeholder="Search for a community" enterButton="Search" size="large" onSearch={onSearch}/>
 
 
                     <div className='gameList3'>
                     <>
 
-                    <List pagination={{ position, align, pageSize: 5 }}
-                    dataSource={data} renderItem={(item) => (
+                    <List 
+                    pagination={{ position, align, pageSize: 5 }}
+                    dataSource={games} 
+                    renderItem={(item) => (
                         <List.Item>
                         <List.Item.Meta
-                        avatar={<Avatar src={item.avatar} />}
-                        title={<a href=" ">{item.title}</a >}
-                        description={item.description}/>
+                        avatar={<Avatar src={item.url} />}
+                        title={<a href=" ">{item.game_name}</a >}
+                        description={"Number of "+item.number_of_people+" user in the community"}/>
                         <Link className='linktoCom' to="../Reviews">
                         <Button onClick={() => sendData(item.title)} style={{position:'relative', right:10, top:5}}>Enter  <ExportOutlined /></Button>
                         </Link>
@@ -122,5 +123,5 @@ export default function Community() {const context = useData()
                 </div>
             </div>
         )
-    },[context.user])
+    },[context.user, games])
 }
