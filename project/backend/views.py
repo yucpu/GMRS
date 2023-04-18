@@ -65,11 +65,11 @@ def add_user(request):
         }
         user = User(user_dict)
         user.save()
-
-        response_data = {"message": "User created successfully"}
+        
+        response_data = {"message": "User created successfully","code":200}
         return HttpResponse(json.dumps(response_data), content_type='application/json')
     else:
-        response_data = {}
+        response_data = {"message": "Illegal Request","code":400}
         return HttpResponse(json.dumps(response_data), content_type='application/json')
 
 
@@ -170,7 +170,7 @@ def update_profile(request):
             }
         }
         response = HttpResponse(json.dumps(response_data), content_type='application/json')
-        response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+        response['Access-Control-Allow-Origin'] = '*'
         response['Access-Control-Allow-Methods'] = 'POST'
         return response
     else:
@@ -191,7 +191,7 @@ def update_profile(request):
             }
         }
         response = HttpResponse(json.dumps(response_data), content_type='application/json')
-        response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+        response['Access-Control-Allow-Origin'] = '*'
         response['Access-Control-Allow-Methods'] = 'GET'
         return response
 
@@ -214,7 +214,7 @@ def add_friend(request):
             response_data = {"messafe": "Friend added failed"}
 
         response = HttpResponse(json.dumps(response_data), content_type='application/json')
-        response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+        response['Access-Control-Allow-Origin'] = '*'
         response['Access-Control-Allow-Methods'] = 'POST'
 
     return response
@@ -340,7 +340,7 @@ def get_friends(request):
             "friends": friends,
         }
         response = HttpResponse(json.dumps(response_data), content_type='application/json')
-        response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+        response['Access-Control-Allow-Origin'] = '*'
         response['Access-Control-Allow-Methods'] = 'GET'
         return response
 
@@ -369,13 +369,13 @@ def add_game(request):
             }
             status_code = 401
         response = HttpResponse(json.dumps(response_data), content_type='application/json', status=status_code)
-        response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+        response['Access-Control-Allow-Origin'] = '*'
         response['Access-Control-Allow-Methods'] = 'POST'
         return response
     else:
         response_data = {}
         response = HttpResponse(json.dumps(response_data), content_type='application/json')
-        response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+        response['Access-Control-Allow-Origin'] = '*'
         response['Access-Control-Allow-Methods'] = 'GET'
         return response
     
@@ -430,13 +430,13 @@ def search_friends(request):
 
         # Return response
         response = HttpResponse(json.dumps(response_data), content_type='application/json')
-        response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+        response['Access-Control-Allow-Origin'] = '*'
         response['Access-Control-Allow-Methods'] = 'POST'
         return response
 
     else:
         response_data = {}
         response = HttpResponse(json.dumps(response_data), content_type='application/json')
-        response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+        response['Access-Control-Allow-Origin'] = '*'
         response['Access-Control-Allow-Methods'] = 'POST'
         return response

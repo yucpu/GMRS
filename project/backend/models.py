@@ -8,7 +8,7 @@ import json
 # connect to MongoDB database
 client = MongoClient("mongodb://localhost:27017/")
 db = client["sw"]
-collection = db["profile_data"]
+collection = db["profile"]
 game_collection = db['game']
 review_collection = db['review']
 discussion_collection = db['discussion']

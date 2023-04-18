@@ -1,5 +1,5 @@
-import {React, useMemo,} from 'react'
-import { useData } from '../util/data'
+import {React, useEffect, useMemo,} from 'react'
+import { getData, useData } from '../util/data'
 import { AudioOutlined, ExportOutlined } from '@ant-design/icons';
 import { Input,Avatar, List,Button } from 'antd';
 import './Community.css';
@@ -7,19 +7,13 @@ import {Link} from "react-router-dom";
 
 
 export default function Community() {const context = useData()
-    const { Search } = Input;
-    const suffix = (
-        <AudioOutlined
-          style={{
-            fontSize: 16,
-            color: '#1890ff',
-          }}
-        />
-      );
-      
-      const onSearch = (value) => console.log(value);
-
-
+    const { Search } = Input;  
+    const onSearch = (value) => console.log(value);
+    
+    
+    useEffect(()=>{
+      getData("getGame",{"game_name":"Pandemic"}).then((res)=>{console.log(res)});
+    },)
     
 
 

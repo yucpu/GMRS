@@ -3,7 +3,7 @@ import {Button} from 'antd';
 import { Tag } from 'antd'
 import React, {useMemo, useReducer, useState} from 'react'
 import {generateToken, postData} from "../util/data"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const reducer = (data, action)=>{
     switch(action.type){
@@ -24,6 +24,7 @@ const reducer = (data, action)=>{
 export default function Register() {
     const [data, dispatch] = useReducer(reducer,{username:"", password:"", region:"", email:"", security:generateToken(10)})
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
     let handleInput = (event,type) =>{
         let value = event.target.value;
         dispatch({type:type, value:value});        
@@ -34,12 +35,15 @@ export default function Register() {
         postData("register", data).then((res)=>{
             console.log(res);
             setLoading(false);
+            navigate("/app")
         }).catch((err)=>{
             console.log(err);
             setLoading(false);
         }).finally(()=>{
             setLoading(false);
+
         });
+        
     }
 
     return useMemo(

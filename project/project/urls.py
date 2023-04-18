@@ -20,7 +20,7 @@ from backend import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('reset_password/', views.reset_password, name='reset_password'),
-    path('add_user/', views.add_user, name='add_user'),
+    path('register', views.add_user, name='add_user'),
     path('login', views.login, name='login'),
     path('update_profile/', views.update_profile, name='update_profile'),
     path('add_friend', views.add_friend, name='add_friend'),
