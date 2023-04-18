@@ -1,8 +1,8 @@
-import {React, useEffect, useMemo, useReducer, useState} from 'react'
-import { getData, postData, useData } from '../util/data'
+import {React, useEffect, useMemo,useState} from 'react'
+import { postData, useData } from '../util/data'
 import './Profile.css'
 import { Button, Divider, Spin} from 'antd'
-import { FormControl, Input, InputBase, InputLabel} from '@mui/material'
+import { FormControl,InputBase, InputLabel} from '@mui/material'
 
 const reducer = (data, action)=>{
     switch(action.type){
@@ -35,7 +35,7 @@ export default function Profile() {
         setBtn(true);
         setBtnLoading(true);
         postData("updateInfo",basicInfo).then(()=>setBtnLoading(false)).finally(()=>setBtnLoading(false));
-        
+        console.log(basicInfo)
     }
 
     

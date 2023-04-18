@@ -20,16 +20,17 @@ def reset_password(request):
         result = json.loads(request.body.decode('utf-8'))
         username = result.get('username')
         security = result.get('security')
-        password = result.get('password')
+        password = result.get('newPassword')
 
+        print(password)
         # get user by username and email
         user = User.get_user_by_username(username)
         if user and security:
             # update user's password and save to database
             user.password = password
             user.save()
-            response_data = {}
-            return HttpResponseRedirect(json.dumps(response_data), content_type='application/json')
+            response_data = {"error_message": ""}
+            return HttpResponse(json.dumps(response_data), content_type='application/json')
         else:
             # display error message if user not found or email does not match
             error_message = "Invalid username or email"
@@ -55,12 +56,12 @@ def add_user(request):
 
         # create new user object and save to database
         user_dict = {
-            'nickname': nickname,
+            'nickname': "" if nickname == None else nickname,
             'username': username,
             'email': email,
-            'region': region,
-            'age': age,
-            'gender': gender,
+            'region': "Earth" if region == None else region,
+            'age':  0 if nickname == None else age,
+            'gender':  "Undefined" if nickname == None else gender,
             'password': password
         }
         user = User(user_dict)
@@ -93,8 +94,7 @@ def login(request):
         print(user.username)
         if user and user.password == password:
             # set session variable and return response
-            request.session['user_id'] = user._id
-            print("retunting body")
+            print("return body")
             response_data = {
                 "token": "SDF7FQ6F",
                 "user": {
@@ -104,7 +104,7 @@ def login(request):
                     "email": user.email,
                     "region": user.region,
                     "age": user.age,
-                    "gender": user.gender,
+                    "gender":user.gender,
                     "friends": user.friends,
                     "games": user.gamecollection,
                 }
@@ -135,24 +135,27 @@ def login(request):
 def update_profile(request):
     if request.method == 'POST':
         # retrieve form data
-        user_id = request.session.get('user_id')
-        nickname = request.POST.get('nickname')
-        email = request.POST.get('email')
-        region = request.POST.get('region')
-        age = request.POST.get('age')
-        gender = request.POST.get('gender')
+        body = json.loads(request.body.decode('utf-8'))
+        user_id = body.get("userID")
+        username = body.get('username')
+        nickname = body.get('nickname')
+        email = body.get('email')
+        region = body.get('region')
+        age = body.get('age')
+        gender = body.get('gender')
 
         # get user by ID
-        user = User.get_user_by_username(user_id)
-
+        user = User.get_user_by_id(user_id)
         # update user's profile and save to database
         profile_dict = {
             'nickname': nickname,
             'email': email,
             'region': region,
             'age': age,
-            'gender': gender
+            'gender': gender,
+
         }
+        print(user)
         user.update_profile(profile_dict)
 
         response_data = {
