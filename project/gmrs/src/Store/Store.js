@@ -1,5 +1,5 @@
 import {React, useMemo, useEffect, useState} from 'react'
-import { useData } from '../util/data'
+import { getData, useData } from '../util/data'
 import { AudioOutlined, DownOutlined } from '@ant-design/icons';
 import { Input, Space, Menu, Dropdown, Avatar, List, Radio, Button } from 'antd';
 import './Store.css';
@@ -8,6 +8,15 @@ import { FormControl } from '@mui/material';
 export default function Store() {
     const context = useData()
     const { Search } = Input;
+    const [games, setGames] = useState([]);
+    const [suggest, setSuggest] = useState([]);
+    
+    useEffect(()=>{
+      getData("get_all_game",{}).then((res)=>{setGames(res)} );
+    },[])
+    useEffect(()=>{
+      getData("get_random_game",{}).then((sug)=>{setSuggest(sug)} );
+    },[])
       
       const onSearch = (value) => console.log(value);
 
@@ -142,13 +151,13 @@ export default function Store() {
                       <List 
                         
                         pagination={{ position, align, pageSize: 10 }}
-                        dataSource={data} renderItem={(item) => (
+                        dataSource={games} renderItem={(item) => (
                           <List.Item
                             actions={[<Button onClick={()=>console.log("Add Game")}>Add</Button>]}
                           >
                           <List.Item.Meta
-                          avatar={<Avatar src={item.avatar} shape='square' style={{width:"100px", height:"60px"}}/>}
-                          title={<a>{item.title}</a>}
+                          avatar={<Avatar src={item.url} shape='square' style={{width:"100px", height:"60px"}}/>}
+                          title={<a>{item.game_name}</a>}
                           description="Ant Design, a design language for background applications, is refined by Ant UED Team"/>
                           
                           </List.Item>
@@ -162,15 +171,15 @@ export default function Store() {
                     <div className='line2'>Based on your rating, friends and so on</div>
                     <List
                         itemLayout="horizontal"
-                        dataSource={suggested}
+                        dataSource={suggest}
                         renderItem={(item) => (
                           <List.Item
                            
                           >
                             <List.Item.Meta
-                              avatar={<Avatar src={item.avatar} shape='square' style={{width:"100px", height:"50px"}}/>}
-                              title={<a style={{ marginRight: '90px' }}>{item.title}</a>}
-                              description={"This is the description"}
+                              avatar={<Avatar src={item.url} shape='square' style={{width:"100px", height:"50px"}}/>}
+                              title={<a style={{ marginRight: '90px' }}>{item.game_name}</a>}
+                              description={"There are " + item.number_of_people + " in the community."}
                             />
                           </List.Item>
                         )}
@@ -178,5 +187,5 @@ export default function Store() {
                 </div>
             </div>
         )
-    },[context.user])
+    },[context.user, games, suggest])
 }
