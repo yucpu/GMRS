@@ -9,7 +9,7 @@ import json
 client = MongoClient("mongodb://localhost:27017/")
 db = client["sw"]
 collection = db["profile"]
-game_collection = db['game']
+game_collection = db['game1']
 review_collection = db['review']
 discussion_collection = db['discussion']
 guide_collection = db['guide']
@@ -123,6 +123,7 @@ class User:
 class Game:
     def __init_subclass__(self, game_dict):
         self.game_id = game_dict['game_id']
+        self.url = game_dict['url']
         self.game_name = game_dict['game_name']
         self.publisher = game_dict['publisher']
         self.release_date = game_dict['release_date']
@@ -139,14 +140,21 @@ class Game:
 
     @staticmethod
     def get_all_game():
-        game_data = {}
-        for x in game_collection.find({}, {"_id": 0,"game_name": 1, "numOfPpl" : 1}):
+        game_list = []
+        for x in game_collection.find({}, {"_id": 0,"game_name": 1, "numOfPpl" : 1, "url": 1}):
             num = x['numOfPpl']
-            game_data[x['game_name']] = num
+            url = x['url']
+            game_name = x['game_name']
+            game_data = {
+                "game_name": game_name,
+                "number_of_people": num,
+                "url": url
+            }
+            game_list.append(game_data)
 
-        print("141:", game_data)
+        print("141:", game_list)
 
-        return game_data
+        return game_list
 
 #
 class Community:

@@ -1,5 +1,6 @@
 import {React, useMemo, useState} from 'react'
-import { useData } from '../util/data'
+import {getData, useData} from '../util/data'
+import { postData} from "../util/data";
 import './Reviews.css';
 import { Routes, Route, Link} from "react-router-dom";
 import { Menu ,Rate,Button, Form, Input, InputNumber} from 'antd';
@@ -8,12 +9,14 @@ import { LeftOutlined ,LikeOutlined,DislikeOutlined, MessageOutlined} from '@ant
 
 export default function Reviews() {
   const context = useData()
+    const data = getData()
   const [score, setScore] = useState(null);
 
   function handleRateChange(value) {
     setScore(value);
     // 在这里可以将评分记录到后端或者其他地方
   }
+  const test = postData(score)
   console.log(score);
   const items = [
     {
@@ -33,15 +36,15 @@ export default function Reviews() {
   ];
 
   /* eslint-enable no-template-curly-in-string */
-  
+
   const onFinish = (values) => {
     console.log(values);
   };
-  
+
   return useMemo(()=>{
       return (
         <div id="Reviews">
-        <div className='navigate-bar'> 
+        <div className='navigate-bar'>
        <Menu mode="horizontal" >
        <Menu.Item key="1" >
       <Link className='linktoReview' to="../Community"><LeftOutlined />Return</Link>
@@ -62,7 +65,7 @@ export default function Reviews() {
         <p className='rate'><Rate disabled value={items[0].rate} /> &nbsp;&nbsp; &nbsp; {items[0].Comment}</p>
         <p> {items[0].content}</p>
         <div className='box_bottom'>
-            <img src={items[0].image}></img> 
+            <img src={items[0].image}></img>
             <div className='gameName'>{items[0].title}</div>
             <div className='comment'><LikeOutlined /> <DislikeOutlined /> <MessageOutlined /> </div>
         </div>
@@ -71,7 +74,7 @@ export default function Reviews() {
       <p className='rate'><Rate disabled value={items[1].rate} /> &nbsp;&nbsp; &nbsp; {items[1].Comment}</p>
         <p> {items[1].content}</p>
         <div className='box_bottom'>
-            <img src={items[1].image}></img> 
+            <img src={items[1].image}></img>
             <div className='gameName'>{items[1].title}</div>
             <div className='comment'><LikeOutlined /> <DislikeOutlined /> <MessageOutlined /> </div>
         </div>
@@ -80,7 +83,7 @@ export default function Reviews() {
         <div className='RateGame'>
         Rate Here: <Rate onChange={handleRateChange} />
         </div>
-        <Form  name="nest-messages" onFinish={onFinish} > 
+        <Form  name="nest-messages" onFinish={onFinish} >
         <Form.Item className='reviews_input' name={['user', 'introduction']} label="Your review">
         <Input.TextArea />
         </Form.Item>

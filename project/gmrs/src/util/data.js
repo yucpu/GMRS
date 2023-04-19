@@ -72,6 +72,7 @@ export const useData = ()=>{
 
 export async function login(data){
     let url = serverHost+ 'login';
+    console.log(url);
     let request = new Request(url, {
         method: 'POST',
         mode: 'cors',
@@ -115,6 +116,30 @@ export async function getData(getPath,params){
     return respone.json();
 }
 
+export async function getData1(getPath){
+    // let objects = Object.keys(params)
+    // console.log(objects)
+    let res = '';
+    // for (let key=0; key < objects.length; key ++){
+    //     if (key != objects.length-1){
+    //         res+= ''+objects[key]+'='+encodeURIComponent(params[objects[key]])+"&";
+    //     }else{
+    //         res+= ''+objects[key]+'='+encodeURIComponent(params[objects[key]]);
+    //     }
+    // }
+    console.log(res)
+    let url = serverHost+ `${getPath}` + res
+    console.log(url);
+    let request = new Request(url, {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'default',
+        credentials: 'same-origin',
+        headers : {'Content-Type': 'application/json; charset=utf-8'},
+    })
+    const respone = await fetch(request)
+    return respone.json();
+}
 /**
  * async Post data to the server from user-end
  * @param {string} postPath the path of postRequest. eg serverHost/pathName

@@ -7,3 +7,6 @@ project/gmrs/build/
 # ignore SERVER
 
 project/SERVER
+
+# ignore ds
+project/backend/.DS_Store

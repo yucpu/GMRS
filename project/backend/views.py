@@ -269,22 +269,20 @@ def get_all_game(request):
 
     print(json.loads(response.content))
     return response
+    
+
+
 def select_community(request):
     if request.method == "GET":
         game_name = request.GET.get("game_name")
-        print("252:", game_name)
         reviews = Review.get_reviews(game_name)
-        print("254", reviews)
         discussions = Discussion.get_discussion(game_name)
-        print(discussions)
         guides = Guide.get_guide(game_name)
-        print("258", guides)
 
         community_info = [reviews, discussions, guides]
         response = HttpResponse(json.dumps(community_info, indent=4))
         response['Access-Control-Allow-Origin'] = "*"
         response['Access-Control-Allow-Methods'] = "GET"
-        print("这是最后的res:", response)
 
     return response
 
@@ -320,14 +318,30 @@ def getGame(request):
     if request.method == 'GET':
         game_name = request.GET.get("game_name")
         print("239:", game_name)
-        game_info = Game.get_game(game_name)
-        game_info["_id"] = str(game_info["_id"])
-        print("240: ", game_info)
+        try:
+            game_info = Game.get_game(game_name)
+            game_info["_id"] = str(game_info["_id"])
+            game_info["errorMessage"] = ''
+            print("240: ", game_info)
 
-        response = HttpResponse(json.dumps(game_info), content_type='application/json')
+            response = HttpResponse(json.dumps(game_info), content_type='application/json')
+            response.write("")
+        except(TypeError):
+            message = {
+                "errorMessage": "No such a game"
+            }
+            response = HttpResponse(json.dumps(message))
+
         response['Access-Control-Allow-Origin'] = "*"
         response['Access-Control-Allow-Methods'] = "GET"
 
+    return response
+
+def get_random_game(request):
+    game_list = Game.get_all_game()
+    random_game_list = (random.choices(game_list, k = 3))
+
+    response = HttpResponse(json.dumps(random_game_list))
     return response
 
 # def get_friends(request):
