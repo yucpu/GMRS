@@ -5,9 +5,10 @@ import { IconButton, InputBase, Paper} from '@mui/material'
 import  SearchIcon from '@mui/icons-material/Search'
 import { Space, Tag, List, Avatar} from 'antd';
 import { getData, useData } from '../util/data';
+import { type } from '@testing-library/user-event/dist/type'
 const {CheckableTag} = Tag
-let prototype = {'friends':false,'id':false,'region':false,'game':false}
-let tags = {'friends':true,'id':false,'region':false,'game':false}
+let prototype = {'friends':false,'username':false,'region':false,'game':false}
+let tags = {'friends':true,'username':false,'region':false,'game':false}
 let info = ['nickname', 'age', 'region', 'email', 'Games'];
 const reducer = (data, action)=>{
     switch(action.type){
@@ -32,7 +33,7 @@ export default function Friends() {
     const [loading,setLoading] = useState(false);
     
     useEffect(()=>{
-        getData("friends",{id:124,filter:data.filter,query:data.query}).then((res)=>dispatch({type:"friendList",value:res.friendList}))
+        getData("friends",{id:context.state.user.userID,filter:data.filter,query:data.query}).then((res)=>dispatch({type:"friendList",value:res.friendList}))
         
     },[])
 
@@ -48,10 +49,28 @@ export default function Friends() {
 
     let handleSearch = () =>{
         setLoading(true);
-        getData("friends",{id:124,filter:data.filter,query:data.query})
-        .then((res)=>dispatch({type:"friendList",value:res.friendList}))
+        getData("friends",{id:context.state.user.userID,filter:data.filter,query:data.query})
+        .then((res)=>{dispatch({type:"friendList",value:res.friendList})
+        console.log(res)})
         .finally(()=>setLoading(false));
         
+    }
+
+    let handleFriends=()=>{
+        if(context.state.user.friends.includes(data.selected.userID)){
+            let friends = context.state.user.friends;
+            friends.splice(friends.indexOf(data.selected.userID),1);
+            console.log(friends)
+            getData("remove_friend",{id:context.state.user.userID, friend:data.selected.userID}).then(
+                context.dispatch({type:"user", value:{...context.state.user, friends:friends}})
+            )
+            return
+        }
+        let friends = context.state.user.friends;
+        friends.push(data.selected.userID);
+        getData("add_friend",{id:context.state.user.userID, friend:data.selected.userID}).then(
+            context.dispatch({type:"user", value:{...context.state.user, friends:friends}})
+        )
     }
 
     return useMemo(()=>{
@@ -76,7 +95,7 @@ export default function Friends() {
                                 style={{
                                 marginRight: 8,
                                 }}
-                            >
+                            >   
                                 Filter:
                             </span>
                             <Space size={[10, 10]} wrap>
@@ -102,8 +121,8 @@ export default function Friends() {
                             <List.Item>
                                 <List.Item.Meta
                                 avatar={<Avatar src={`https://xsgames.co/randomusers/avatar.php?g=pixel&key=${index}`} />}
-                                title={<a onClick={()=>dispatch({type:"selected",value:item.user})}>{item.user.nickname}</a>}
-                                description={item.user.userID}
+                                title={<a onClick={()=>dispatch({type:"selected",value:item})}>{item.nickname}</a>}
+                                description={item.userID}
                                 />
                             </List.Item>
                             )}
@@ -115,19 +134,19 @@ export default function Friends() {
                     data.selected ? 
                         <div id='friendInfo'>
                             <img src={require("../resources/gamer_1.png")} width="20%"/>
-                            {info.map((itme)=>(
-                                <div key={`option-${itme}`} style={{display:'flex', flexDirection:'row', justifyContent:'space-between', width:'80%'}}>
+                            {info.map((item)=>(
+                                <div key={`option-${item}`} style={{display:'flex', flexDirection:'row', justifyContent:'space-between', width:'80%'}}>
                                     <div>
-                                        {itme}
+                                        {item}
                                     </div>
                                     <div>
                                         {
-                                            data.selected[itme]
+                                            data.selected[item]
                                         }
                                     </div>
                                 </div>
                             ))}
-                            <Button>Remove </Button>
+                            <Button onClick={handleFriends}>{context.state.user.friends.includes(data.selected.userID) ? "Remove":"Add"} </Button>
                         </div>
                         :
                         <div>
@@ -137,7 +156,7 @@ export default function Friends() {
             </div>
         )
         },
-        [data,loading]
+        [data,loading,context.user]
     )
 
 }

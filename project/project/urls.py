@@ -23,12 +23,13 @@ urlpatterns = [
     path('register', views.add_user, name='add_user'),
     path('login', views.login, name='login'),
     path('updateInfo', views.update_profile, name='update_profile'),
-    path('add_friend', views.add_friend, name='add_friend'),
-    path('get_friends/', views.get_friends, name='get_friends'),
     path('getGame', views.getGame, name="getGame"),
     path('community', views.community, name = "community"),
     path('select_community', views.select_community, name = 'select_community'),
     path('app/Review/post_review', views.post_review, name = 'post_review'),
-    path('app/community/get_all_game', views.get_all_game, name = 'get_alL_friend')
+    path('app/community/get_all_game', views.get_all_game, name = 'get_alL_friend'),
+    path('friends', views.get_all_friends, name = "get_all_friends"),
+    path('add_friend', views.add_new_friend, name="add_new_friend"),
+    path('remove_friend', views.remove_friend,name="remove_friend")
 
 ]

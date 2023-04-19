@@ -109,15 +109,16 @@ class User:
         friends = []
         for user_dict in users:
             user = User(user_dict)
-            common_friends = set(user.friends).intersection(set(user.friends))
-            if common_friends:
-                friends.append({
-                    'user': user,
-                    'common_friends': common_friends
-                })
+            # common_friends = set(user.friends).intersection(set(user.friends))
+            # if common_friends:
+            #     friends.append({
+            #         'user': user,
+            #         'common_friends': common_friends
+            #     })
+            friends.append(user)
 
         return friends
-        
+ 
 
 class Game:
     def __init_subclass__(self, game_dict):

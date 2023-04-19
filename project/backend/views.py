@@ -330,22 +330,118 @@ def getGame(request):
 
     return response
 
-def get_friends(request):
-    if request.method == 'GET':
-        # get current user object
-        user_id = request.session.get('user_id')
-        user = User.get_user_by_username(user_id)
+# def get_friends(request):
+#     if request.method == 'GET':
+#         # get current user object
+#         user_id = request.GET.get('userID')
+#         user = User.get_user_by_username(user_id)
 
-        # get list of friends for user
-        friends = user.friends
+#         # get list of friends for user
+#         friends = user.friends
+#         response_data = {
+#             "friends": friends,
+#         }
+#         response = HttpResponse(json.dumps(response_data), content_type='application/json')
+#         response['Access-Control-Allow-Origin'] = '*'
+#         response['Access-Control-Allow-Methods'] = 'GET'
+#         return response
 
+def all_friends(id):
+    user = User.get_user_by_id(id)
+    friend = []
+    for id in user.friends:
+        friend.append(User.get_user_by_id(id))
+
+    print(friend)
+    return friend
+
+def toJson(data):
+    res = []
+    for user in data:
+        temp={
+            "userID": user._id,
+            "username": user.username,
+            "nickname": user.nickname,
+            "email": user.email,
+            "region": user.region,
+            "age": user.age,
+            "gender": user.gender,
+            "friends": user.friends,
+            "games": user.gamecollection,
+        }
+        res.append(temp)
+
+    return res
+def remove_friend(request):
+    if request.method == "GET":
+        user_id = request.GET.get('id')
+        friend = request.GET.get("friend")
+        user = User.get_user_by_id(user_id)
+        user.friends.remove(friend)
+        user.save()
         response_data = {
-            "friends": friends,
+            "message":"successful",
+            "errorMessage":""
         }
         response = HttpResponse(json.dumps(response_data), content_type='application/json')
         response['Access-Control-Allow-Origin'] = '*'
         response['Access-Control-Allow-Methods'] = 'GET'
         return response
+    errorMessage = {
+    "errorMessage":"Illeagal Request"
+    }
+    return HttpResponse(json.dumps(errorMessage), content_type = "application/json")   
+
+def add_new_friend(request):
+    if request.method == "GET":
+        user_id = request.GET.get('id')
+        friend = request.GET.get("friend")
+        user = User.get_user_by_id(user_id)
+        user.friends.append(friend)
+        user.save()
+
+        response_data = {
+            "message":"successful",
+            "errorMessage":""
+        }
+
+        response = HttpResponse(json.dumps(response_data), content_type='application/json')
+        response['Access-Control-Allow-Origin'] = '*'
+        response['Access-Control-Allow-Methods'] = 'GET'
+        return response
+    errorMessage = {
+    "errorMessage":"Illeagal Request"
+    }
+    return HttpResponse(json.dumps(errorMessage), content_type = "application/json")
+
+def get_all_friends(request):
+    if request.method == "GET":
+        user_id = request.GET.get('id')
+        filter = request.GET.get("filter")
+        query = request.GET.get("query")
+        friend = []
+        if filter == "friends":
+            friend = all_friends(user_id)
+        elif filter == "username":
+            friend = [User.get_user_by_username(query)]
+        elif filter == "region":
+            friend = User.search_friends(region=query)
+        else:
+            friend = User.search_friends(game=query)
+
+        response_data = {
+            "num":len(friend),
+            "friendList":toJson(friend),
+            "errorMessage":""
+        }
+        response = HttpResponse(json.dumps(response_data), content_type='application/json')
+        response['Access-Control-Allow-Origin'] = '*'
+        response['Access-Control-Allow-Methods'] = 'GET'
+        return response
+    errorMessage = {
+        "errorMessage":"Illeagal Request"
+    }
+    return HttpResponse(json.dumps(errorMessage), content_type = "application/json")
 
 
 def add_game(request):
