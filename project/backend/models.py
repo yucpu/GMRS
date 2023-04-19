@@ -9,7 +9,7 @@ import json
 client = MongoClient("mongodb://localhost:27017/")
 db = client["sw"]
 collection = db["profile"]
-game_collection = db['game1']
+game_collection = db['game']
 review_collection = db['review']
 discussion_collection = db['discussion']
 guide_collection = db['guide']
