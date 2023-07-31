@@ -10,3 +10,5 @@ project/SERVER
 
 # ignore ds
 project/backend/.DS_Store
+
+.DS_Store
